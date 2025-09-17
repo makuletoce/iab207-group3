@@ -1,0 +1,475 @@
+/* 
+
+COLOURS 
+
+#ff1CC0: Pink
+#B131FA: violet purple
+#4A0071: Dark purple
+#03b2ed: Blue
+#ff9100: sunset 
+*/
+
+
+/* -------------------------------------- < GLOBAL > ---------------------------- */
+
+body{
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat ;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.navbar{
+    background: rgb(36, 8, 58); 
+}
+
+.navbar-toggler{
+    background: #ff9d00;
+    background: linear-gradient(90deg, rgba(255, 157, 0, 1) 0%, rgba(199, 87, 175, 1) 71%, rgba(237, 83, 232, 1) 100%);
+}
+
+.tango-pixels{
+    animation: jump 1.8s infinite steps(2);
+}
+
+@keyframes jump {
+    0%, 100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-5px);
+    }
+    
+}
+
+.cards-wrapper{
+    display: flex;
+    backdrop-filter:  blur(30px);
+    background: rgba(29, 28, 28, 0.61);
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.card{
+    margin-top: 1em;
+    overflow: hidden;
+    margin-bottom: 10px;
+    margin-left:5px;
+    margin-right: 5px;
+    max-height: 190px;
+}
+
+
+.carousel-inner{
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.carousel-control-prev{
+    width: 5%;
+}
+
+.carousel-control-next{
+    width: 5%;
+}
+
+.Popular{
+    font-family: 'Press Start 2P', cursive; /* A pixel-art font */
+    color: #ff8c00; /* main color */
+    text-shadow:
+        2px 2px #4a0071, /* shadow */
+        -2px -2px #4a0071,
+        2px -2px #4a0071,
+        -2px 2px #4a0071; /* pixelated border */
+}
+
+.carousel-heading{
+    font-family: 'Press Start 2P', cursive; /* A pixel-art font */
+    color: #ff8c00; /* main color */
+    text-shadow:
+        2px 2px #4a0071, /* shadow */
+        -2px -2px #4a0071,
+        2px -2px #4a0071,
+        -2px 2px #4a0071; /* pixelated border */
+}
+
+.pixel-font{
+    font-family: 'Press Start 2P', cursive; /* A pixel-art font */
+    color: #ff8c00; /* main color */
+    text-shadow:
+        2px 2px #4a0071, /* shadow */
+        -2px -2px #4a0071,
+        2px -2px #4a0071,
+        -2px 2px #4a0071; /* pixelated border */
+}
+
+.platform{
+    backdrop-filter:  blur(30px);
+    background: rgba(53, 52, 52, 0.61);
+    margin-top: 150px;
+    height: 100%;
+    width: 100%;
+}
+
+.booking-container{
+    background-image: url(../img/button.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 35%;
+    height: 25%;
+    scale: 1.5;
+    background-color: #4a0071;
+}
+
+.detail-button{
+     background: linear-gradient(90deg, rgba(255, 157, 0, 1) 0%, rgba(199, 87, 175, 1) 71%, rgba(237, 83, 232, 1) 100%);
+}
+
+.history-ticket{
+    width: 95%;
+    background: rgba(48, 46, 46, 0.966);
+    border-radius: 3px;
+    border-color: rgba(29, 28, 28, 0.973);
+    border-style: ridge; 
+}
+
+
+.list-group-item{
+    backdrop-filter:  blur(30px);
+    background: rgba(58, 56, 56, 0.13);
+    color: whitesmoke;
+}
+
+.search-btn{
+    background: linear-gradient(90deg, rgba(255, 157, 0, 1) 0%, rgba(199, 87, 175, 1) 71%, rgba(237, 83, 232, 1) 100%);
+}
+
+
+
+
+
+/* -------------------------------------- LARGE > ---------------------------- */
+@media (min-width: 992px){
+
+    /* NAVBAR BRAND */
+.navbar-brand{
+    transition: ease;
+    color: #ff9100;
+    background-image: url(../img/button.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 5.5rem;
+    height: 4rem;
+    margin-left: 5rem;
+    margin-right: 4rem;
+    scale: 1.5;
+    text-align: center;
+    padding-top: 14px;
+    padding-left: 8px;
+    margin-bottom: 10px;
+}
+
+.navbar-brand:hover{
+    scale: 1.7;
+    color: #ff9100;
+}
+
+
+    /* NAVBAR ITEMS*/
+.nav-item{
+    transition: ease;
+    color: #ff9100;
+    background-image: url(../img/button.png);
+    margin-left: 3rem;
+    margin-bottom: 10px;
+    scale: 1.5;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 5rem;
+    height: 3rem;
+}
+
+.nav-link{
+    text-align: center;
+    justify-content: center;
+    padding-top: 13px;
+    color: #ff9100;
+}
+
+
+.nav-item:hover{
+    scale: 1.7;
+}
+
+.nav-link:hover{
+    color: #ff9100;
+}
+
+
+/* Carousel Card's */
+.navbar{
+    padding-top: 1rem;
+    height: 80px;
+}
+
+.card{
+    width: 18rem;
+}
+
+.tango-pixels{
+    max-height: 480px;
+}
+
+.card-main{
+    min-width: 90px;
+    width: 30%;
+    min-height: 80px;
+    max-height: 300px;
+    backdrop-filter:  blur(30px);
+    background: rgba(29, 28, 28, 0.61);
+    color: whitesmoke;
+
+}
+
+
+
+}
+
+
+/* -------------------------------------- MEDIUM  ---------------------------- */
+@media (max-width: 992px){
+
+    /* NAVBAR BRAND */
+.navbar-brand{
+    color: #ff9100;
+    background-image: url(../img/button.png);
+    margin-left: 2rem;
+    scale: 1.2;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 6rem;
+    height: 3rem;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+
+}
+
+.navbar-brand:hover{
+    scale: 1.5;
+}
+
+.nav-item:hover{
+    scale: 2;
+}
+
+.nav-link:hover{
+    color: #ff9100;
+}
+
+.nav-item{
+    transition: ease;
+    color: #ff9100;
+    background-image: url(../img/button.png);
+    margin-left: 8rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    scale: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 8rem;
+    height: 5rem;
+}
+
+.nav-link{
+    text-align: center;
+    justify-content: center;
+    padding-top: 25px;
+    color: #ff9100;
+    font-size: larger;
+}
+
+
+
+.offcanvas{
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    max-width: 80%;
+
+}
+
+
+.tango-pixels{
+    max-height: 280px;
+    margin-top: 7vh;
+    margin-bottom: 10px;
+}
+
+.Popular{
+    margin-left: 2em;
+    font-size: large;
+}
+
+.Popular-heading{
+    text-align: center;
+}
+
+
+.nav-item:hover{
+    scale: 1.7;
+}
+
+.nav-link:hover{
+    color: #ff9100;
+}
+
+.navbar{
+    padding-top: 2rem;
+}
+
+.card{
+    min-width: 90px;
+    width: 30%;
+    min-height: 80px;
+    max-height: 300px;
+}
+
+.card-main{
+    min-width: 90px;
+    width: 30%;
+    min-height: 80px;
+    max-height: 300px;
+    backdrop-filter:  blur(30px);
+    background: rgba(29, 28, 28, 0.61);
+    color: whitesmoke;
+
+}
+
+
+
+
+
+.cards-wrapper{
+    backdrop-filter:  blur(30px);
+    background: rgba(29, 28, 28, 0.61);
+    justify-content: space-between;
+}
+
+.dropdown-menu {
+    background: #ff9d00;
+    background: linear-gradient(90deg, rgba(255, 157, 0, 1) 0%, rgba(199, 87, 175, 1) 71%, rgba(237, 83, 232, 1) 100%);
+}
+
+.button-filter {
+    background: #ff9d00;
+    background: linear-gradient(90deg, rgba(255, 157, 0, 1) 0%, rgba(199, 87, 175, 1) 71%, rgba(237, 83, 232, 1) 100%);
+}
+}
+
+
+/* -------------------------------------- < SMAll ---------------------------- */
+@media (max-width: 768px){
+
+.navbar-brand{
+    color: #ff9100;
+    background-image: url(../img/button.png);
+    margin-left: 2rem;
+    scale: 1.2;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 6rem;
+    height: 3rem;
+    text-align: center;
+    padding-top: 15px;
+
+}
+
+.navbar-brand:hover{
+    scale: 1.5;
+}
+
+.nav-item:hover{
+    scale: 2;
+}
+
+.nav-link:hover{
+    color: #ff9100;
+}
+
+.nav-item{
+    transition: ease;
+    color: #ff9100;
+    background-image: url(../img/button.png);
+    margin-left: 8rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    scale: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 8rem;
+    height: 5rem;
+}
+
+.nav-link{
+    text-align: center;
+    justify-content: center;
+    padding-top: 25px;
+    color: #ff9100;
+}
+
+.offcanvas{
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    max-width: 80%;
+
+}
+
+
+.tango-pixels{
+    max-height: 150px;
+    margin-top: 7vh;
+    margin-bottom: 20px;
+}
+
+.Popular{
+    margin-left: 2em;
+    font-size: large;
+}
+
+.carousel-heading{
+    margin-left: 2em;
+    font-size: large;
+}
+
+.carousel-inner{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.card{
+    min-width: 90px;
+    width: 30%;
+    min-height: 15px;
+    max-height: 140px;
+    margin-bottom: 10px;
+    margin-left:5px;
+    margin-right: 5px;
+}
+
+.cards-wrapper{
+    backdrop-filter:  blur(30px);
+    background: rgba(29, 28, 28, 0.61);
+    justify-content: space-between;
+}
+
+}
+
+
