@@ -13,7 +13,7 @@ COLOURS
 /* -------------------------------------- < GLOBAL > ---------------------------- */
 
 body{
-    background-image: url(../img/background.jpg);
+    background-image: url(img/background.jpg);
     background-repeat: no-repeat ;
     background-size: cover;
     background-attachment: fixed;
@@ -112,7 +112,7 @@ body{
 }
 
 .booking-container{
-    background-image: url(../img/button.png);
+    background-image: url(img/button.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -156,7 +156,7 @@ body{
 .navbar-brand{
     transition: ease;
     color: #ff9100;
-    background-image: url(../img/button.png);
+    background-image: url(img/button.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -181,7 +181,7 @@ body{
 .nav-item{
     transition: ease;
     color: #ff9100;
-    background-image: url(../img/button.png);
+    background-image: url(img/button.png);
     margin-left: 3rem;
     margin-bottom: 10px;
     scale: 1.5;
@@ -245,7 +245,7 @@ body{
     /* NAVBAR BRAND */
 .navbar-brand{
     color: #ff9100;
-    background-image: url(../img/button.png);
+    background-image: url(img/button.png);
     margin-left: 2rem;
     scale: 1.2;
     background-size: cover;
@@ -275,7 +275,7 @@ body{
 .nav-item{
     transition: ease;
     color: #ff9100;
-    background-image: url(../img/button.png);
+    background-image: url(img/button.png);
     margin-left: 8rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -378,7 +378,7 @@ body{
 
 .navbar-brand{
     color: #ff9100;
-    background-image: url(../img/button.png);
+    background-image: url(img/button.png);
     margin-left: 2rem;
     scale: 1.2;
     background-size: cover;
@@ -406,7 +406,7 @@ body{
 .nav-item{
     transition: ease;
     color: #ff9100;
-    background-image: url(../img/button.png);
+    background-image: url(img/button.png);
     margin-left: 8rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
