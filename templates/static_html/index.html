@@ -1,0 +1,533 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tango</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+  
+  <nav class="navbar navbar-expand-lg fixed-top">
+  <a class="navbar-brand" href="index.html">Tango</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <form class="d-flex mt-2" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+              <button class="btn search-btn" type="submit">Search</button>
+            </form>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="event-managment.html">Manage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="booking-history.html" >History</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<body>
+
+  <div class="container-sm tango-pixels" >  
+     <img src="../static/img/Tango-2.png"  style="margin-left: 10%;" class="d-block w-75" alt="competative-image">
+  </div>
+
+  <div id="Main-Carousel" class="container-md">
+
+    <div class="Popular-heading col-12 d-flex justify-content-center">
+      <h1 class="Popular">Popular</h1>
+    </div>
+
+    <div id="carousel" class="col-flex">
+        <div id="carouselAutoplaying" class="carousel slide" style="justify-content: center;" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  
+                  <!-- ------------- CAROSEL 1 -------------- -->
+                  <div class="carousel-item active" data-bs-interval="100000">
+                    <div class="cards-wrapper">
+                      
+                      <div id="competative-card" class="card card-main collapse show">
+                      <img src="../static/img/competative-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">CS:GO open</h5>
+                          <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">Friend Slop Frezy</h5>
+                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="...">
+                          <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">Board Games</h5>
+                            <p class="card-text d-none d-lg-block">Like to play dungons and dragons? or just in the mood for some manopoly, have a good time with some board games!</p>
+                          </div>
+                          <a href="event-details.html" class="stretched-link"></a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- ------------- CAROSEL 2 -------------- -->
+                  <div class="carousel-item" data-bs-interval="100000"> 
+                    <div class="cards-wrapper">
+                      
+                      <div id="social-card" class="card card-main collapse show">
+                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">Friend Slop Frezy</h5>
+                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="...">
+                          <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">Board Games</h5>
+                            <p class="card-text d-none d-lg-block">Like to play dungons and dragons? or just in the mood for some manopoly, have a good time with some board games!</p>
+                          </div>
+                          <a href="event-details.html" class="stretched-link"></a>
+                      </div>
+
+                      <div id="competative-card" class="card card-main collapse show">
+                      <img src="../static/img/competative-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">CS:GO open</h5>
+                          <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                    </div>
+                  </div>
+                
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+          </div>
+    </div>
+  </div>
+
+  <div id="filter" class="container-sm col-12 d-flex justify-content-center mt-5">
+   
+    <h2 class="pixel-font d-none d-md-block">Events</h2>
+    <div class="dropdown d-none d-md-block d-lg-none" >
+      <button class="btn btn-secondary dropdown-toggle button-filter" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+        <div class="icon-link" href="#" style="color: #000; text-decoration: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </div>
+      </button>
+
+        <ul class="dropdown-menu">
+         
+          <li style="margin-left: 10px;">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-bs-toggle="collapse" data-bs-target="#competative-card" checked>
+            <label class="form-check-label" for="defaultCheck1">
+              Competative
+            </label>
+          </li>
+
+          <li style="margin-left: 10px;">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" data-bs-toggle="collapse" data-bs-target="#casual-card" checked>
+            <label class="form-check-label" for="defaultCheck2">
+              Casual
+            </label>
+          </li>
+          
+          <li style="margin-left: 10px;">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+            <label class="form-check-label" for="defaultCheck3">
+              Social
+            </label>
+          </li>
+        </ul>
+      </div>
+
+  </div>
+
+  <div class="container-lg d-none d-md-block  d-inline">
+    
+    <div class="row justify-content-center">
+      <div id="competative-card" class="card card-main collapse show">
+        <img src="../static/img/competative-image.jpg" class="card-img-top" alt="..." style="max-height: 190px;">
+          <div class="card-body" style="background-color: transparent;">
+            <h5 class="card-title">CS:GO Annual</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-main">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+              </svg> Available
+            </li>
+          </ul>
+          <a href="event-details.html" class="stretched-link"></a>
+      </div>
+    
+      <div id="casual-card" class="card card-main collapse show">
+        <img src="../static/img/social-image.jpg" class="card-img-top" alt="social-card" style="max-height: 190px;">
+          <div class="card-body" style="background-color: transparent;">
+            <h5 class="card-title">Online Game meetup</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-main">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="Green" class="bi bi-dot" viewBox="0 0 16 16">
+                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+              </svg> Available
+            </li>
+          </ul>
+          <a href="event-details.html" class="stretched-link"></a>
+      </div>
+
+      <div id="casual-card" class="card card-main collapse show">
+        <img src="../static/img/casual-image.jpg" class="card-img-top" alt="..." style="max-height: 190px;">
+          <div class="card-body" style="background-color: transparent;">
+            <h5 class="card-title">Friend Slop Frenzy</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-main">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="orange" class="bi bi-dot" viewBox="0 0 16 16">
+                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+              </svg> Low-Availability
+            </li>
+          </ul>
+          <a href="event-details.html" class="stretched-link"></a>
+      </div>
+
+      <div id="casual-card" class="card card-main collapse show">
+        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="..." style="max-height: 190px;">
+          <div class="card-body" style="background-color: transparent;">
+            <h5 class="card-title">Board Game Weekly</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-main">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="red" class="bi bi-dot" viewBox="0 0 16 16">
+                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+              </svg> Sold out
+            </li>
+          </ul>
+          <a href="event-details.html" class="stretched-link"></a>
+      </div>
+
+      <div id="scoial-card" class="card card-main collapse show">
+        <img src="../static/img/social-2-image.png" class="card-img-top" alt="social-2-image" style="max-height: 190px;" >
+          <div class="card-body" style="background-color: transparent;">
+            <h5 class="card-title">Offline Meetups</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-main">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+              </svg> Available
+            </li>
+          </ul>
+          <a href="event-details.html" class="stretched-link"></a>
+      </div>
+    
+    </div>
+  </div>
+
+  <div id="Small-Carousels" class="container d-md-none">   
+
+    <div class="row my-5">
+      <div class="carousel-top">
+        <h1 class="carousel-heading">Casual</h1>
+      </div>
+      <div id="carousel" class="col-flex">
+        <div id="carouselAutoplaying2" class="carousel slide" style="justify-content: center;" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  
+                  <!-- ------------- CAROSEL 1 -------------- -->
+                  <div class="carousel-item active" data-bs-interval="100000">
+                    <div class="cards-wrapper">
+                      
+                      <div id="competative-card" class="card card-main collapse show">
+                      <img src="../static/img/competative-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">CS:GO open</h5>
+                          <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">Friend Slop Frezy</h5>
+                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="...">
+                          <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">Board Games</h5>
+                            <p class="card-text d-none d-lg-block">Like to play dungons and dragons? or just in the mood for some manopoly, have a good time with some board games!</p>
+                          </div>
+                          <a href="event-details.html" class="stretched-link"></a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- ------------- CAROSEL 2 -------------- -->
+                  <div class="carousel-item active" data-bs-interval="100000">
+                    <div class="cards-wrapper">
+                      
+                      <div id="competative-card" class="card card-main collapse show">
+                      <img src="../static/img/competative-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">CS:GO open</h5>
+                          <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">Friend Slop Frezy</h5>
+                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="...">
+                          <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">Board Games</h5>
+                            <p class="card-text d-none d-lg-block">Like to play dungons and dragons? or just in the mood for some manopoly, have a good time with some board games!</p>
+                          </div>
+                          <a href="event-details.html" class="stretched-link"></a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying2" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying2" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="row my-5">
+      <div class="carousel-top">
+        <h1 class="carousel-heading">Competative</h1>
+      </div>
+      <div id="carousel" class="col-flex">
+        <div id="carouselAutoplaying3" class="carousel slide" style="justify-content: center;" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  
+                  <!-- ------------- CAROSEL 1 -------------- -->
+                  <div class="carousel-item active" data-bs-interval="100000">
+                    <div class="cards-wrapper">
+                      
+                      <div id="competative-card" class="card card-main collapse show">
+                      <img src="../static/img/competative-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">CS:GO open</h5>
+                          <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">Friend Slop Frezy</h5>
+                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="...">
+                          <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">Board Games</h5>
+                            <p class="card-text d-none d-lg-block">Like to play dungons and dragons? or just in the mood for some manopoly, have a good time with some board games!</p>
+                          </div>
+                          <a href="event-details.html" class="stretched-link"></a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- ------------- CAROSEL 2 -------------- -->
+                  <div class="carousel-item active" data-bs-interval="100000">
+                    <div class="cards-wrapper">
+                      
+                      <div id="competative-card" class="card card-main collapse show">
+                      <img src="../static/img/competative-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">CS:GO open</h5>
+                          <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">Friend Slop Frezy</h5>
+                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="...">
+                          <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">Board Games</h5>
+                            <p class="card-text d-none d-lg-block">Like to play dungons and dragons? or just in the mood for some manopoly, have a good time with some board games!</p>
+                          </div>
+                          <a href="event-details.html" class="stretched-link"></a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying3" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying3" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+          </div>
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <div class="carousel-top">
+        <h1 class="carousel-heading">Social</h1>
+      </div>
+      <div id="carousel" class="col-flex">
+        <div id="carouselAutoplaying3" class="carousel slide" style="justify-content: center;" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  
+                  <!-- ------------- CAROSEL 1 -------------- -->
+                  <div class="carousel-item active" data-bs-interval="100000">
+                    <div class="cards-wrapper">
+                      
+                      <div id="competative-card" class="card card-main collapse show">
+                      <img src="../static/img/competative-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">CS:GO open</h5>
+                          <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">Friend Slop Frezy</h5>
+                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="...">
+                          <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">Board Games</h5>
+                            <p class="card-text d-none d-lg-block">Like to play dungons and dragons? or just in the mood for some manopoly, have a good time with some board games!</p>
+                          </div>
+                          <a href="event-details.html" class="stretched-link"></a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- ------------- CAROSEL 2 -------------- -->
+                  <div class="carousel-item active" data-bs-interval="100000">
+                    <div class="cards-wrapper">
+                      
+                      <div id="competative-card" class="card card-main collapse show">
+                      <img src="../static/img/competative-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">CS:GO open</h5>
+                          <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: transparent;">
+                          <h5 class="card-title">Friend Slop Frezy</h5>
+                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                        </div>
+                        <a href="event-details.html" class="stretched-link"></a>
+                    </div>
+
+                      <div id="social-card" class="card card-main collapse show">
+                        <img src="../static/img/boardGame-image.jpg" class="card-img-top" alt="...">
+                          <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">Board Games</h5>
+                            <p class="card-text d-none d-lg-block">Like to play dungons and dragons? or just in the mood for some manopoly, have a good time with some board games!</p>
+                          </div>
+                          <a href="event-details.html" class="stretched-link"></a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying3" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying3" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+
+
+    
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </body>
+</html>
+

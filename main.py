@@ -5,15 +5,19 @@ app.debug = True
 
 @app.route('/')
 def landing():
-    return render_template('index_dynamic.html')
+    return render_template('index.html')
 
 @app.route('/managment')
 def eventManagment():
-    return render_template('event_d_managment.html')
+    return render_template('event_managment.html')
 
 @app.route('/history')
 def eventHistory():
-    return render_template('booking-history.html')
+    return render_template('booking_history.html')
+
+@app.route('/details')
+def eventDetails():
+    return render_template('event_details.html')
 
 
 app.run()
