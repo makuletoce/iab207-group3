@@ -1,23 +1,20 @@
-from flask import Flask, render_template, url_for
+from flask import Blueprint, render_template, url_for
 
-app = Flask(__name__)
-app.debug = True
+mainbp = Blueprint('main', __name__)
 
-@app.route('/')
+
+@mainbp.route('/')
 def landing():
     return render_template('index.html')
 
-@app.route('/managment')
+@mainbp.route('/managment')
 def eventManagment():
     return render_template('event_managment.html')
 
-@app.route('/history')
+@mainbp.route('/history')
 def eventHistory():
     return render_template('booking_history.html')
 
-@app.route('/details')
+@mainbp.route('/details')
 def eventDetails():
     return render_template('event_details.html')
-
-
-app.run()
