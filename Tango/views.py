@@ -25,8 +25,7 @@ def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
         return render_template('/')
-
-    return render_template('Login.html', form=LoginForm)
+    return render_template('Login.html', form=login_form)
 
 @mainbp.route('/signup')
 def signup():
