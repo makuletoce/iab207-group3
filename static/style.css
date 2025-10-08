@@ -145,11 +145,15 @@ body{
     background: linear-gradient(90deg, rgba(255, 157, 0, 1) 0%, rgba(199, 87, 175, 1) 71%, rgba(237, 83, 232, 1) 100%);
 }
 
-
+label {
+  color: white;
+}
 
 
 
 /* -------------------------------------- LARGE > ---------------------------- */
+/*--------- nav bar login...etc ---------*/
+
 @media (min-width: 992px){
 
     /* NAVBAR BRAND */
@@ -163,7 +167,7 @@ body{
     width: 5.5rem;
     height: 4rem;
     margin-left: 5rem;
-    margin-right: 4rem;
+    margin-right: 3rem;
     scale: 1.5;
     text-align: center;
     padding-top: 14px;
@@ -182,27 +186,29 @@ body{
     transition: ease;
     color: #ff9100;
     background-image: url(img/button.png);
-    margin-left: 3rem;
-    margin-bottom: 10px;
-    scale: 1.5;
+ 
+    margin-bottom: 5px;
+    scale: 1;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    width: 5rem;
-    height: 3rem;
+    width: 7.5rem;
+    height: 5rem;
 }
 
 .nav-link{
     text-align: center;
+    margin-top: 1rem;
     justify-content: center;
-    padding-top: 13px;
+    padding-top: 10px;
     color: #ff9100;
 }
 
 
 .nav-item:hover{
-    scale: 1.7;
+    scale: 1.2;
 }
+
 
 .nav-link:hover{
     color: #ff9100;
@@ -276,15 +282,16 @@ body{
     transition: ease;
     color: #ff9100;
     background-image: url(img/button.png);
-    margin-left: 8rem;
+    margin-left: 3rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
     scale: 1;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    width: 8rem;
+    width: 10rem;
     height: 5rem;
+    
 }
 
 .nav-link{
@@ -331,6 +338,7 @@ body{
 
 .navbar{
     padding-top: 2rem;
+
 }
 
 .card{
@@ -350,8 +358,6 @@ body{
     color: whitesmoke;
 
 }
-
-
 
 
 

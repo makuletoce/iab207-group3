@@ -19,5 +19,13 @@ def eventHistory():
 def eventDetails():
     return render_template('event_details.html')
 
+@app.route('/login')
+def login():
+    return render_template('Login.html')
+
+@app.route('/signup')
+def signup():
+    return render_template('SignUp.html')
+
 
 app.run()
