@@ -17,7 +17,7 @@ class Event(db.Model):
     comments = db.relationship('Comment', backref='event') 
 
     def __repr__(self):
-        return "title: {}, description {}, id {}, host {}".format(self.title, self.description, self.id, self.host)
+        return "title: {}, description {}, id {},".format(self.title, self.description, self.id)
 
 class Ticket(db.Model):
     __tablename__ = 'tickets'
@@ -27,6 +27,7 @@ class Ticket(db.Model):
     purchase_date = db.Column(db.DateTime, nullable=False)
 
     event_id = db.Column(db.Integer, db.ForeignKey('events.id')) 
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
         return "status: {}, purchased {}, id {}".format(self.status, self.purchase_date, self.id)
@@ -53,6 +54,7 @@ class User(db.Model):
     email = db.Column(db.String(64), nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
 
+    ticket = db.relationship('Ticket', backref='user')
     comments = db.relationship('Comment', backref='user')
     hosted_events = db.relationship('Event', backref='host_user', foreign_keys='Event.host')
 
