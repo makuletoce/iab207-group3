@@ -18,17 +18,12 @@ def eventHistory():
 @mainbp.route('/details')
 def eventDetails():
     return render_template('event_details.html')
-<<<<<<< HEAD:main.py
 
-@app.route('/login')
+@mainbp.route('/login')
 def login():
     return render_template('Login.html')
 
-@app.route('/signup')
+@mainbp.route('/signup')
 def signup():
     return render_template('SignUp.html')
 
-
-app.run()
-=======
->>>>>>> 54350c9a5ba1453e5e23df25ad497378e8202b0e:Tango/views.py
