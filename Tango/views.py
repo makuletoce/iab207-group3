@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from .forms import LoginForm
 
 mainbp = Blueprint('main', __name__)
 
@@ -21,7 +22,11 @@ def eventDetails():
 
 @mainbp.route('/login')
 def login():
-    return render_template('Login.html')
+    login_form = LoginForm()
+    if login_form.validate_on_submit():
+        return render_template('/')
+
+    return render_template('Login.html', form=LoginForm)
 
 @mainbp.route('/signup')
 def signup():

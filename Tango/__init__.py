@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+# from flask_bootstrap import Bootstrap
 
 db=SQLAlchemy()
 
@@ -13,7 +14,9 @@ def create_app():
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Tango.db'
 
-    db.init_app(app)
+    db.init_app(app)    
+
+   
 
     with app.app_context():
         db.create_all()
