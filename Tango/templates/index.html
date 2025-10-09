@@ -68,6 +68,38 @@
   <div id="filter" class="container-sm col-12 d-flex justify-content-center mt-5">
    
     <h2 class="pixel-font d-none d-md-block">Events</h2>
+    <form class="row g-2 justify-content-center mb-4"
+      method="get"
+      action="{{ url_for('main.landing') }}"
+      style="max-width: 800px;">
+  <div class="col-md-5">
+    <input type="search" name="q" class="form-control"
+           placeholder="Search title or description…" value="{{ q or '' }}">
+  </div>
+
+  <div class="col-md-3">
+    <select name="when" class="form-select">
+      <option value="upcoming" {{ 'selected' if when=='upcoming' else '' }}>Upcoming</option>
+      <option value="past" {{ 'selected' if when=='past' else '' }}>Past</option>
+      <option value="all" {{ 'selected' if when=='all' else '' }}>All</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <select name="status" class="form-select">
+      <option value="all" {{ 'selected' if status=='all' else '' }}>Any</option>
+      <option value="open" {{ 'selected' if status=='open' else '' }}>Open</option>
+      <option value="soldout" {{ 'selected' if status=='soldout' else '' }}>Sold Out</option>
+      <option value="inactive" {{ 'selected' if status=='inactive' else '' }}>Inactive</option>
+    </select>
+  </div>
+
+  <div class="col-md-1 d-grid">
+    <button type="submit" class="btn btn-primary">Filter</button>
+  </div>
+</form>
+
+<div class="dropdown d-none d-md-block d-lg-none">
     <div class="dropdown d-none d-md-block d-lg-none" >
       <button class="btn btn-secondary dropdown-toggle button-filter" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
         <div class="icon-link" href="#" style="color: #000; text-decoration: none;">
@@ -92,7 +124,7 @@
               Casual
             </label>
           </li>
-          
+
           <li style="margin-left: 10px;">
             <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
             <label class="form-check-label" for="defaultCheck3">
@@ -109,25 +141,37 @@
     <div class="row justify-content-center">
 
 
-      <!-- TO DO dynamic card bulk content -->  
-
-      <div id="competative-card" class="card card-main collapse show">
-        <img src="../static/img/competative-image.jpg" class="card-img-top" alt="..." style="max-height: 190px;">
+  <div class="container-lg d-none d-md-block d-inline">
+  <div class="row g-4 justify-content-center">
+    {% if events and events|length %}
+      {% for ev in events %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 card-main">
+          <img
+            src="{{ url_for('static', filename='img/' ~ (ev.image or 'competative-image.jpg')) }}"
+            class="card-img-top"
+            alt="{{ ev.title }}"
+            style="max-height:190px;"
+          >
           <div class="card-body" style="background-color: transparent;">
-            <h5 class="card-title">CS:GO Annual</h5>
+            <h5 class="card-title">{{ ev.title }}</h5>
+            <p class="card-text d-none d-lg-block">
+              {{ (ev.description or '')[:140] }}{% if (ev.description or '')|length > 140 %}…{% endif %}
+            </p>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item list-group-item-main">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-              </svg> Available
+              {{ ev.availability or 'Open' }}
             </li>
           </ul>
-          <a href="details" class="stretched-link"></a>
+          <a href="{{ url_for('main.eventDetails') }}" class="stretched-link"></a>
+        </div>
       </div>
-    
-    </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-center text-muted py-5">No events match your filter.</p>
+    {% endif %}
   </div>
+</div>
 
-  </div>
 {% endblock %}
