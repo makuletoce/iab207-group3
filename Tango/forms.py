@@ -21,7 +21,6 @@ class SignUpForm(FlaskForm):
     address = StringField('Street Address', validators=[DataRequired()])
 
     submit = SubmitField("Submit")
-    SignUp = SubmitField("Sign In")
 
 class EventManagement(FlaskForm):
     
@@ -29,10 +28,10 @@ class EventManagement(FlaskForm):
     event_date = StringField('Event Date')
     event_time = StringField('Event Time')
     location = StringField('Location')
-    my_dropdown = SelectField('Choose an Option', choices=[
-            ('option1_value', 'Option 1 Display'),
-            ('option2_value', 'Option 2 Display'),
-            ('option3_value', 'Option 3 Display')], validators=[DataRequired()])
+    my_dropdown = SelectField('Catagory', choices=[
+            ('Casual', 'Casual'),
+            ('Competative', 'Competative'),
+            ('Social', 'Social')], validators=[DataRequired()])
 
     description = StringField('Description')
 

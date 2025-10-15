@@ -16,6 +16,7 @@
 
       <!------------- Form ------------>
     <form method="POST">
+      {{ form.hidden_tag() }}
           <div class="container">
       <div class="row">
         <div class="col">
@@ -34,38 +35,38 @@
         <div class="col">
             {{form.phone.label(class="form-label")}} 
               {{form.phone(class="form-control")}}
-</div>
+        </div>
 
         <div class="col">
 
             {{form.email.label(class="form-label")}}     
               {{form.email(class="form-control")}}
         </div>  
-        </div>
+      </div>
 
 
 
-        <div class="row">
+      <div class="row">
         <div class="col">
             {{form.password.label(class="form-label")}} 
               {{form.password(class="form-control")}}
         </div>
-        </div>
+      </div>
 
 
-        <div class="row">
+      <div class="row">
         <div class="col">  
             {{form.address.label(class="form-label")}} 
               {{form.address(class="form-control")}}
 
         </div>
-        </div>
+      </div>
 
         <br>
 
 
         <!-- Submit + Signup link -->
-        <div class="row">
+      <div class="row">
         <div class="col-sm-3">
             {{form.submit(class="form-control")}} 
           
@@ -74,11 +75,10 @@
           <div class="col-sm text-sm-end">
             <a href="/login" class="text-decoration-none text-blue-60 ">Login</a>
           </div>
-          
-
-        
       </div>
+
     </div>
+    </form>
   </div>
 </div>
 

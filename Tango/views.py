@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from .forms import LoginForm, SignUpForm, EventManagement
+from . import db
+from .models import User
 
 mainbp = Blueprint('main', __name__)
 
@@ -28,14 +30,24 @@ def eventDetails():
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        return render_template('/')
+        return redirect('/')
     return render_template('Login.html', form=login_form)
 
-@mainbp.route('/signup')
+@mainbp.route('/signup', methods=['GET', 'POST'])
 def signup():
     SignUp_form = SignUpForm()
     if SignUp_form.validate_on_submit():
-        return render_template('/')
+        print("Form has been Validated")
+
+        new_user = User(first_name=SignUp_form.first_name.data, 
+                        last_name=SignUp_form.last_name.data,
+                        phone_number=SignUp_form.phone.data, 
+                        email=SignUp_form.email.data, 
+                        password_hash=SignUp_form.password.data,
+                        address=SignUp_form.address.data)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect('/')
 
     return render_template('SignUp.html', form=SignUp_form)
 

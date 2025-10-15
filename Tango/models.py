@@ -10,7 +10,7 @@ class Event(db.Model):
     availability = db.Column(db.Integer, nullable=False) # number of tickets 
     status = db.Column(db.String(64), index=True, nullable=False)# Available, low-availability, sold out
     date = db.Column(db.Date, nullable=False)
-    time = db.Column(db.Time, nullable=False)
+    time = db.Column(db.String(20), nullable=False)
     catagory = db.Column(db.String(60), nullable=False, default="No Category") # casual, competative, social
     location = db.Column(db.String(500), nullable=False)
 
