@@ -7,9 +7,12 @@ class Event(db.Model):
     title = db.Column(db.String(64), unique=True, index=True)
     description = db.Column(db.String(500), nullable=False)
     image = db.Column(db.String(60), nullable=False, default='/static/img/casual-img.jpg')
-    availability = db.Column(db.Integer, nullable=False, default=0)
-    start_date = db.Column(db.DateTime, nullable=False)
-    end_date = db.Column(db.DateTime, nullable=False)
+    availability = db.Column(db.Integer, nullable=False) # number of tickets 
+    status = db.Column(db.String(64), index=True, nullable=False)# Available, low-availability, sold out
+    date = db.Column(db.Date, nullable=False)
+    time = db.Column(db.Time, nullable=False)
+    catagory = image = db.Column(db.String(60), nullable=False, default="No Category") # casual, competative, social
+    location = db.Column(db.String(500), nullable=False)
 
     host = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -23,7 +26,7 @@ class Ticket(db.Model):
     __tablename__ = 'tickets'
 
     id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.String(64), nullable=False, default='Active')
+    status = db.Column(db.String(64), nullable=False, default='Active') # Active, Inactive
     purchase_date = db.Column(db.DateTime, nullable=False)
 
     event_id = db.Column(db.Integer, db.ForeignKey('events.id')) 
@@ -50,9 +53,12 @@ class User(db.Model):
     __tablename__='users'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
+    first_name = db.Column(db.String(64), nullable=False)
+    last_name = db.Column(db.String(64), nullable=False)
+    phone_number = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
+    address = db.Column(db.String(64), nullable=False)
 
     ticket = db.relationship('Ticket', backref='user')
     comments = db.relationship('Comment', backref='user')
