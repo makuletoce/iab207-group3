@@ -1,7 +1,12 @@
-from flask import Blueprint, render_template, request
-from datetime import datetime
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from datetime import datetime                     
+from .forms import LoginForm
 from .models import Event
-from . import db
+from . import db                                  
+      
+
+mainbp = Blueprint('main', __name__)
+
 
 mainbp = Blueprint('main', __name__)
 
@@ -49,14 +54,20 @@ def eventHistory():
 def eventDetails():
     return render_template('event_details.html')
 
-@mainbp.route('/login')
+@mainbp.route('/login', methods=['GET', 'POST'])
 def login():
-    login_form = LoginForm()
-    if login_form.validate_on_submit():
-        return render_template('/')
-    return render_template('Login.html', form=login_form)
+    form = LoginForm()                        
+    if form.validate_on_submit():              
+        flash("Login submitted (demo only).", "success")
+        return redirect(url_for('main.landing'))
+    return render_template('Login.html', form=form)
+
 
 @mainbp.route('/signup')
 def signup():
     return render_template('SignUp.html')
 
+@mainbp.route('/boom')
+def boom():
+    # force a 500 internal error to test our handler
+    1 / 0

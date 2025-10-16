@@ -8,16 +8,23 @@ db = SQLAlchemy()
 #initalises the application
 def create_app():
     app=Flask(__name__)
-    app.debug = True
+    app.debug = False
     app.secret_key = 'TangoSecret3254'
 
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Tango.db'
 
     from . import models
-    db.init_app(app)    
+    db.init_app(app)
+
+    from .errors import errorsbp    
+    app.register_blueprint(errorsbp)
 
     from .views import mainbp
     app.register_blueprint(mainbp)
+
+    
+
+
 
     return app
