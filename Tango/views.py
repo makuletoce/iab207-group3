@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template
-from .forms import LoginForm
+from flask import Blueprint, render_template, request, session, redirect, url_for
+from .forms import LoginForm, SignUpForm, EventManagement
 
 mainbp = Blueprint('main', __name__)
 
@@ -10,7 +10,11 @@ def landing():
 
 @mainbp.route('/managment')
 def eventManagment():
-    return render_template('event_managment.html')
+    Event_Management_form = EventManagement()
+    if Event_Management_form.validate_on_submit():
+        return render_template('/')
+
+    return render_template('event_managment.html', form=Event_Management_form)
 
 @mainbp.route('/history')
 def eventHistory():
@@ -29,5 +33,9 @@ def login():
 
 @mainbp.route('/signup')
 def signup():
-    return render_template('SignUp.html')
+    SignUp_form = SignUpForm()
+    if SignUp_form.validate_on_submit():
+        return render_template('/')
+
+    return render_template('SignUp.html', form=SignUp_form)
 
