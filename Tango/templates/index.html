@@ -23,13 +23,18 @@
                     <div class="cards-wrapper">
                     
                         <!-- TO DO dynamic 3 card content  -->
-                        <div id="competative-card" class="card card-main collapse show">
-                            <img src="../static/img/competative-image.jpg" class="card-img-top">
-                            <div class="card-body" style="background-color: transparent;">
-                            <h5 class="card-title">CS:GO open</h5>
-                            <p class="card-text d-none d-lg-block">coming this july 2026 be there or be square you dont wanna miss this showdown!</p>
+                        <div class="cards-wrapper d-flex flex-wrap justify-content-center gap-4 mt-3">
+                          {% for i in range(3) %}
+                            <div class="card card-main collapse show" style="width: 20rem;">
+                              <img src="{{ url_for('static', filename='img/casual-img.jpg') }}" class="card-img-top" alt="Test Image">
+                              <div class="card-body">
+                                <h4 class="card-title">{{ variable }} {{ i+1 }}</h4>
+                                <p class="card-text">
+                                  This is a sample description for card number {{ i+1 }}.
+                                </p>
+                              </div>
                             </div>
-                            <a href="details" class="stretched-link"></a>
+                          {% endfor %}
                         </div>
 
                     </div>
