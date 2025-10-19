@@ -1,4 +1,5 @@
 from . import db
+from flask_login import UserMixin
 
 class Event(db.Model):
     __tablename__ = 'events'
@@ -49,7 +50,7 @@ class Comment(db.Model):
     def __repr__(self):
         return "by {}, at {}, for{}".format(self.user_id, self.date_posted, self.event_id)
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__='users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -65,5 +66,5 @@ class User(db.Model):
     hosted_events = db.relationship('Event', backref='host_user', foreign_keys='Event.host')
 
     def __repr__(self):
-        return "name: {}, email {}, comments {}".format(self.name, self.email, self.comments)
+        return "name: {}, email {}, comments {}".format(self.first_name, self.email, self.password_hash)
     
