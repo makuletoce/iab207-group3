@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid">
     <!-- Left side: brand + links -->
-    <a class="navbar-brand" href="/">Tango</a>
+    <a class="navbar-brand" href="{{url_for('main.landing')}}">Tango</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,15 +23,15 @@
       <div class="offcanvas-body justify-content-between align-items-center">
         {% if current_user.is_authenticated %}
         <ul class="navbar-nav mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="history">History</a></li>
-          <li class="nav-item"><a class="nav-link" href="managment">Manage</a></li>
-          <li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.eventHistory')}}">History</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.eventManagment')}}">Manage</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('auth.logout')}}">Logout</a></li>
         </ul>
 
         {% else %}
         <!-- Left links -->
          <ul class="navbar-nav mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('auth.login')}}">Login</a></li>
         </ul>
         {% endif %}
         

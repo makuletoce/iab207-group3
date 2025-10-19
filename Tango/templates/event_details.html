@@ -43,19 +43,19 @@
         <p class="pixel-font">ticket number: </p>
       </div>
         <div class="col- col-sm-3">
-          <div class="input-group col">
-            <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-              <option selected>#</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-            <button class="btn btn-outline-secondary" type="button">Attend!</button>
+          <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="input-group col-12">
+             <div class="mb-3 col-6">
+                  {{form.quantity(class="form-control")}}
+            </div>
+            <div class="col-6">{{form.submit(class="form-control")}}</div>
           </div>
         </div>
+      </form>
       <div class="col-3 d-sm-block"></div>
       <div class="col-12 d-flex justify-content-center">
-        <p class="pixel-font" style="font-size: xx-small; margin-top: 10px;">not Signed in yet click <a>HERE</a><p>
+        <p class="pixel-font" style="font-size: xx-small; margin-top: 10px;">not Signed in yet click <a href="{{url_for('auth.signup')}}">Here</a><p>
       </div>
     </div>
 
