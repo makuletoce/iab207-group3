@@ -9,8 +9,8 @@ class Event(db.Model):
     description = db.Column(db.String(500), nullable=False)
     image = db.Column(db.String(60), nullable=False, default='/static/img/casual-img.jpg')
     availability = db.Column(db.Integer, nullable=False) # number of tickets 
-    status = db.Column(db.String(64), index=True, nullable=False)# Available, low-availability, sold out
-    date = db.Column(db.Date, nullable=False)
+    status = db.Column(db.String(64), index=True, nullable=False, default="Available")# Available, low-availability, sold out
+    date = db.Column(db.String, nullable=False)
     time = db.Column(db.String(20), nullable=False)
     catagory = db.Column(db.String(60), nullable=False, default="No Category") # casual, competative, social
     location = db.Column(db.String(500), nullable=False)

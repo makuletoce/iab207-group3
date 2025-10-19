@@ -13,14 +13,27 @@ def landing():
     events = Event.query.all()
     return render_template('index.html', events=events)
 
-@mainbp.route('/managment')
+@mainbp.route('/managment', methods=['GET', 'POST'] )
 @login_required
 def eventManagment():
-    Event_Management_form = EventManagement()
-    if Event_Management_form.validate_on_submit():
-        return render_template('/')
+    form = EventManagement()
+    if form.validate_on_submit():
+        new_event = Event(title = form.event_name.data,
+                          description = form.description.data,
+                          date = form.event_date.data,
+                          time = form.event_time.data,
+                          location = form.location.data,
+                          catagory = form.catagory.data,
+                          availability = form.num_of_tickets.data,
+                          host = current_user.id
+                          )
+        
+        db.session.add(new_event)
+        db.session.commit()
 
-    return render_template('event_managment.html', form=Event_Management_form)
+        return redirect(url_for("main.landing"))
+
+    return render_template('event_managment.html', form=form)
 
 @mainbp.route('/history')
 @login_required
