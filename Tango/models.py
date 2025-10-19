@@ -28,10 +28,11 @@ class Ticket(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(64), nullable=False, default='Active') # Active, Inactive
-    purchase_date = db.Column(db.DateTime, nullable=False)
+    purchase_date = db.Column(db.Date, nullable=False)
 
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id')) 
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
 
     def __repr__(self):
         return "status: {}, purchased {}, id {}".format(self.status, self.purchase_date, self.id)

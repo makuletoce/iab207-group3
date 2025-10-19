@@ -31,6 +31,7 @@
 
 
       <!-- Ticket History For Upcoming Events -->
+      {% for ticket in tickets %}
       <div class="row mb-2 p-2 history-ticket">
         <div class="col-12">
           <div class="row">
@@ -46,7 +47,7 @@
             <div class="row w-100 align-items-start">
               
               <div class="col-12">
-                <p class="pixel-font"> CS:GO open </p>
+                <p class="pixel-font"> {{ticket.event.title}} </p>
               </div>
 
               <div class="col-5 pixel-font d-flex flex-column justify-content-center mb-1" style="font-size: small;">
@@ -56,7 +57,7 @@
               </div>
 
               <div class="col-7 mb-1 d-flex flex-column">
-                <span class="mb-1 pixel-font" style="font-size: small;">Booking number: 42284176</span>
+                <span class="mb-1 pixel-font" style="font-size: small;">Booking number: {{ticket.event.id}}</span>
                 <span class="m-0"> 
                   <img src="../static/img/QR.PNG" class="card-img-top" alt="..." style="height: 4rem; width: 4rem;"> 
                 </span>
@@ -66,6 +67,7 @@
         </div>
       </div>
       </div>
+      {% endfor %}
 
 
       <!-- Cut line 2 -->

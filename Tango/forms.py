@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, SelectField, IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -35,4 +35,9 @@ class EventManagement(FlaskForm):
     description = StringField('Description')
 
     submit = SubmitField("Submit")
+
+class TicketForm(FlaskForm):
+    
+    quantity = IntegerField("Ticket Amount", validators=[DataRequired()])
+    submit = SubmitField("Attend")
 

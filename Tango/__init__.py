@@ -27,7 +27,7 @@ def create_app():
     
 
     login_manager.login_view = 'auth.login'
-    login_manager.login_message = "You must be a logged in user to manage events"
+    login_manager.login_message = "You must be a logged in user to access that page"
     login_manager.init_app(app)
     
     from .models import User

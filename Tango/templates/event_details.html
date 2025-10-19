@@ -14,18 +14,18 @@
               <div class="col-12">\
                 <div class="row">
                   <div id="title" class="col-12 text-center text-capitalize">
-                    <h5 class="pixel-font">Casual Gaming meetup</h5>
+                    <h5 class="pixel-font">{{event.title}}</h5>
                   </div>
                   <div id="description" class="col my-3">
-                    <p class="pixel-font">meet new friends at this free event down at your local pub, chill vibes and good times intow </p>
+                    <p class="pixel-font">{{event.description}} </p>
                   </div>
                   <div class="text-center pixel-font">
-                    <p>Date: 05/9/2025</p>
-                    <p>start Time: 5:30pm</p>
-                    <p>Venu: Lakes Hotel</p>
+                    <p>Date: {{event.date}}</p>
+                    <p>start Time: {{event.time}}</p>
+                    <p>Venu: {{event.location}}</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="orange" class="bi bi-dot" viewBox="0 0 16 16">
                       <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-                    </svg> Low-Availability
+                    </svg> {{event.status}}
                   </div>
                 </div>
               </div>

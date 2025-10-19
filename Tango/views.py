@@ -1,15 +1,15 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
-from .forms import EventManagement
-from . import db
-from .models import User
-from flask_login import login_required
+from .forms import EventManagement, TicketForm
+from .models import Ticket, Event
+from flask_login import login_required, current_user
 
 mainbp = Blueprint('main', __name__)
 
 
 @mainbp.route('/')
 def landing():
-    return render_template('index.html')
+    events = Event.query.all()
+    return render_template('index.html', events=events)
 
 @mainbp.route('/managment')
 @login_required
@@ -21,12 +21,18 @@ def eventManagment():
     return render_template('event_managment.html', form=Event_Management_form)
 
 @mainbp.route('/history')
+@login_required
 def eventHistory():
-    return render_template('booking_history.html')
+    tickets = Ticket.query.filter_by(user_id=current_user.id).all()
+    for ticket in tickets:
+        print(ticket)
+    return render_template('booking_history.html', tickets=tickets)
 
-@mainbp.route('/details')
-def eventDetails():
-    return render_template('event_details.html')
+@mainbp.route('/details/<int:event_id>')
+def eventDetails(event_id):
+    event = Event.query.get_or_404(event_id)
+    form = TicketForm()
+    return render_template('event_details.html', event=event)
 
 # @mainbp.route('/login')
 # def login():
