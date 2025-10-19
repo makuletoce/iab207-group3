@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from .forms import EventManagement, TicketForm
-from .models import Ticket, Event
+from .models import Ticket, Event, Comment
 from flask_login import login_required, current_user
 from . import db
 from datetime import date
+from sqlalchemy.orm import joinedload
 
 mainbp = Blueprint('main', __name__)
 
@@ -49,6 +50,15 @@ def eventDetails(event_id):
     event = Event.query.get_or_404(event_id)
     form = TicketForm()
     error = None
+
+    # 🔹 pull comments for this event and eager-load each comment's user
+    comments = (
+        Comment.query
+        .options(joinedload(Comment.user))        # so c.user is usable in the template
+        .filter_by(event_id=event.id)
+        .order_by(Comment.date_posted.desc())
+        .all()
+    )
     
     if form.validate_on_submit():
         
@@ -68,5 +78,5 @@ def eventDetails(event_id):
                 db.session.commit()
                 return redirect(url_for("main.landing"))
             
-    return render_template('event_details.html', event=event, form=form)
+    return render_template('event_details.html', event=event, form=form, comments=comments)
 

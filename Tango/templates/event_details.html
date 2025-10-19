@@ -59,70 +59,42 @@
       </div>
     </div>
 
-    <!-- Comment Elemnt containing sample comments -->
-    <div id="comments" class="row mt-lg-3 ms-1 me-1"> 
-      <div class="rounded-1 col-12 bg-dark-subtle comment-platform">
-        <h2>Comments</h2>
-        <div class="input-group m-2 me-1">
-          <input type="text" class="form-control" placeholder="Amazing Event!" aria-label="Amazing Event!" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Post</button>
-        </div> 
-        
-        <div id="comment-box" class="row rounded-2 m-3 comment-box bg-body">    
-          <div class="col-2 d-flex justify-content-start align-items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-              </svg>
-              <p class="mt-2 ms-1">Jennifer</p>          
-          </div>
-          <div class="col-5 d-none d-lg-block mt-2 d-flex justify-content-end">
-            <p>Posted a comment 5 Minute's ago</p>
-          </div>
-          <div class="row">
-            <div class="col-12 bg-dark-subtle me-5 ms-3 mb-3 rounded-2">
-              <p class="m-1">This event was so awesome i really appreciate all the new people that i met and games that i got to try, i will definitely be attending next time!</p>
-            </div>
-          </div> 
-        </div>
+    <!-- Comment Element containing sample comments -->
+    {% for c in comments[:3] %}
+    <div id="comment-box" class="row rounded-2 m-3 comment-box bg-body">
 
-        <div id="comment-box" class="row rounded-2 m-3 comment-box bg-body">    
-          <div class="col-2 d-flex justify-content-start align-items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-              </svg>
-              <p class="mt-2 ms-1">Alix</p>          
-          </div>
-          <div class="col-5 d-none d-lg-block mt-2 d-flex justify-content-end">
-            <p>Posted a comment 7 Hours ago</p>
-          </div>
-          <div class="row">
-            <div class="col-12 bg-dark-subtle me-5 ms-3 mb-3 rounded-2">
-              <p class="m-1">Loved every moment, can’t wait for the next one!</p>
-            </div>
-          </div> 
-        </div>
+      <div class="col-2 d-flex justify-content-start align-items-center">
+        <!-- person icon -->
+        <svg width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 1 0 0 14A7 7 0 0 0 8 1"/>
+        </svg>
+        <p class="mt-2 ms-1">
+          {% if c.user and c.user.first_name %}
+            {{ c.user.first_name }}
+          {% else %}
+            User #{{ c.user_id }}
+          {% endif %}
+        </p>
+      </div>
 
-        <div id="comment-box" class="row rounded-2 m-3 comment-box bg-body">    
-          <div class="col-2 d-flex justify-content-start align-items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 20 20">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-              </svg>
-              <p class="mt-2 ms-1">Bean</p>          
-          </div>
-          <div class="col-5 d-none d-lg-block mt-2 d-flex justify-content-end">
-            <p>Posted a comment 10 Hours ago</p>
-          </div>
-          <div class="row">
-            <div class="col-12 bg-dark-subtle me-5 ms-3 mb-3 rounded-2">
-              <p class="m-1">Fantastic event – fun, engaging, and so well organized.</p>
-            </div>
-          </div> 
+      <div class="col-5 d-none d-lg-block mt-2 d-flex justify-content-end">
+        <p>
+          Posted {{ c.date_posted }}
+        </p>
+      </div>
+
+      <div class="row">
+        <div class="col-12 bg-dark-subtle me-5 ms-3 mb-3 rounded-2">
+          <p class="m-1">{{ c.comment }}</p>
         </div>
+      </div>
     </div>
-    </div>
+    {% endfor %}
+
+    {% if comments|length == 0 %}
+      <p class="text-muted ms-3">No comments yet for this event.</p>
+    {% endif %}
 
 
 {% endblock %}
