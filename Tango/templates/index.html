@@ -22,10 +22,9 @@
                   <div class="carousel-item active" data-bs-interval="100000">
                     <div class="cards-wrapper">
                     
-                        <!-- TO DO dynamic 3 card content  -->
                         {% for event in events %}
                         <div id="competative-card" class="card card-main collapse show">
-                            <img src="../static/img/competative-image.jpg" class="card-img-top">
+                            <img src={{'../static/img/' + event.image}} class="card-img-top">
                             <div class="card-body" style="background-color: transparent;">
                             <h5 class="card-title">{{event.title}}</h5>
                             <p class="card-text d-none d-lg-block">{{event.description}}</p>
@@ -42,14 +41,16 @@
                     <div class="cards-wrapper">
                       
                     <!-- TO DO dynamic 3 card content  -->
-                    <div id="social-card" class="card card-main collapse show">
-                      <img src="../static/img/casual-image.jpg" class="card-img-top" alt="...">
-                        <div class="card-body" style="background-color: transparent;">
-                          <h5 class="card-title">Friend Slop Frezy</h5>
-                          <p class="card-text d-none d-lg-block">have fun with great people and the best co-op gaming experiances</p>
+                    {% for event in events %}
+                        <div id="competative-card" class="card card-main collapse show">
+                            <img src={{'../static/img/' + event.image}} class="card-img-top">
+                            <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">{{event.title}}</h5>
+                            <p class="card-text d-none d-lg-block">{{event.description}}</p>
+                            </div>
+                            <a href="{{url_for('main.eventDetails', event_id=event.id)}}" class="stretched-link"></a>
                         </div>
-                        <a href="details" class="stretched-link"></a>
-                    </div>
+                        {% endfor %}
 
                     </div>
                   </div>
@@ -115,7 +116,7 @@
 
       {% for event in events %}
       <div id="competative-card" class="card card-main collapse show">
-        <img src="../static/img/competative-image.jpg" class="card-img-top" alt="..." style="max-height: 190px;">
+        <img src={{'../static/img/' + event.image}} class="card-img-top" alt="..." style="max-height: 190px;">
           <div class="card-body" style="background-color: transparent;">
             <h5 class="card-title">{{event.title}}</h5>
           </div>
