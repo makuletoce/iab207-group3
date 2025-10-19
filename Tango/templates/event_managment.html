@@ -30,16 +30,24 @@
     <div class="col-lg-8 col-md-7">
       <div class="p-4 rounded-4 shadow" style="background-color: #535353;">
         <form method="POST" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
           <div class="row mb-3">
-            <div class="col-md-4">
+            <div class="col-md-6">
               {{ form.event_name.label(class="form-label") }}
               {{ form.event_name(class="form-control") }}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               {{ form.event_date.label(class="form-label") }}
               {{ form.event_date(class="form-control") }}
             </div>
-            <div class="col-md-4">
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              {{ form.num_of_tickets.label(class="form-label") }}
+              {{ form.num_of_tickets(class="form-control") }}
+            </div>
+            <div class="col-md-6">
               {{ form.event_time.label(class="form-label") }}
               {{ form.event_time(class="form-control") }}
             </div>
@@ -51,8 +59,8 @@
               {{ form.location(class="form-control") }}
             </div>
             <div class="col-md-6">
-              {{ form.my_dropdown.label(class="form-label") }}
-              {{ form.my_dropdown(class="form-control") }}
+              {{ form.catagory.label(class="form-label") }}
+              {{ form.catagory(class="form-control") }}
             </div>
           </div>
 

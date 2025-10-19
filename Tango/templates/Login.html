@@ -11,10 +11,21 @@
           <h2>Login</h2>
         </div>
 
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="pixel-font mb-2" style="font-size: 10px;">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
 
 
         <!------------- Form ------------>
     <form method="POST">
+      {{ form.hidden_tag() }}
         <div class="mb-3">
             {{ form.email.label(class="form-label") }}
             {{ form.email(class="form-control") }}
@@ -28,7 +39,8 @@
 
        <!-- Submit + Signup link -->
           <div class="d-flex justify-content-between align-items-center mt-4">
-            <button type="submit" class="btn btn-primary px-4">Login</button>
+            <div class="col-4">{{form.submit(class="form-control")}}</div>
+  
             <a href="/signup" class="text-decoration-none text-blue-60 ">Sign Up</a>
           </div>
 

@@ -23,19 +23,16 @@
                     <div class="cards-wrapper">
                     
                         <!-- TO DO dynamic 3 card content  -->
-                        <div class="cards-wrapper d-flex flex-wrap justify-content-center gap-4 mt-3">
-                          {% for i in range(3) %}
-                            <div class="card card-main collapse show" style="width: 20rem;">
-                              <img src="{{ url_for('static', filename='img/casual-img.jpg') }}" class="card-img-top" alt="Test Image">
-                              <div class="card-body">
-                                <h4 class="card-title">{{ variable }} {{ i+1 }}</h4>
-                                <p class="card-text">
-                                  This is a sample description for card number {{ i+1 }}.
-                                </p>
-                              </div>
+                        {% for event in events %}
+                        <div id="competative-card" class="card card-main collapse show">
+                            <img src="../static/img/competative-image.jpg" class="card-img-top">
+                            <div class="card-body" style="background-color: transparent;">
+                            <h5 class="card-title">{{event.title}}</h5>
+                            <p class="card-text d-none d-lg-block">{{event.description}}</p>
                             </div>
-                          {% endfor %}
+                            <a href="{{url_for('main.eventDetails', event_id=event.id)}}" class="stretched-link"></a>
                         </div>
+                        {% endfor %}
 
                     </div>
                   </div>
@@ -116,20 +113,22 @@
 
       <!-- TO DO dynamic card bulk content -->  
 
+      {% for event in events %}
       <div id="competative-card" class="card card-main collapse show">
         <img src="../static/img/competative-image.jpg" class="card-img-top" alt="..." style="max-height: 190px;">
           <div class="card-body" style="background-color: transparent;">
-            <h5 class="card-title">CS:GO Annual</h5>
+            <h5 class="card-title">{{event.title}}</h5>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item list-group-item-main">
               <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
                 <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-              </svg> Available
+              </svg> {{event.status}}
             </li>
           </ul>
-          <a href="details" class="stretched-link"></a>
+          <a href="{{url_for('main.eventDetails', event_id=event.id)}}" class="stretched-link"></a>
       </div>
+       {% endfor %}
     
     </div>
   </div>
