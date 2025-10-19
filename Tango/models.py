@@ -1,4 +1,5 @@
 from . import db
+from flask_login import UserMixin
 
 class Event(db.Model):
     __tablename__ = 'events'
@@ -8,8 +9,8 @@ class Event(db.Model):
     description = db.Column(db.String(500), nullable=False)
     image = db.Column(db.String(60), nullable=False, default='/static/img/casual-img.jpg')
     availability = db.Column(db.Integer, nullable=False) # number of tickets 
-    status = db.Column(db.String(64), index=True, nullable=False)# Available, low-availability, sold out
-    date = db.Column(db.Date, nullable=False)
+    status = db.Column(db.String(64), index=True, nullable=False, default="Available")# Available, low-availability, sold out
+    date = db.Column(db.String, nullable=False)
     time = db.Column(db.String(20), nullable=False)
     catagory = db.Column(db.String(60), nullable=False, default="No Category") # casual, competative, social
     location = db.Column(db.String(500), nullable=False)
@@ -27,10 +28,11 @@ class Ticket(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(64), nullable=False, default='Active') # Active, Inactive
-    purchase_date = db.Column(db.DateTime, nullable=False)
+    purchase_date = db.Column(db.Date, nullable=False)
 
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id')) 
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
 
     def __repr__(self):
         return "status: {}, purchased {}, id {}".format(self.status, self.purchase_date, self.id)
@@ -49,7 +51,7 @@ class Comment(db.Model):
     def __repr__(self):
         return "by {}, at {}, for{}".format(self.user_id, self.date_posted, self.event_id)
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__='users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -65,5 +67,5 @@ class User(db.Model):
     hosted_events = db.relationship('Event', backref='host_user', foreign_keys='Event.host')
 
     def __repr__(self):
-        return "name: {}, email {}, comments {}".format(self.name, self.email, self.comments)
+        return "name: {}, email {}, comments {}".format(self.first_name, self.email, self.password_hash)
     

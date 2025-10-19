@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, SelectField, IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -8,7 +8,6 @@ class LoginForm(FlaskForm):
     email = StringField('Email Address', validators=[DataRequired()])
     password = StringField('Password' , validators=[DataRequired()])    
     submit = SubmitField("Submit")
-    SignIn = SubmitField("Sign In")
 
 
 class SignUpForm(FlaskForm):
@@ -28,7 +27,8 @@ class EventManagement(FlaskForm):
     event_date = StringField('Event Date')
     event_time = StringField('Event Time')
     location = StringField('Location')
-    my_dropdown = SelectField('Catagory', choices=[
+    num_of_tickets = IntegerField("Spaces Available")
+    catagory = SelectField('Catagory', choices=[
             ('Casual', 'Casual'),
             ('Competative', 'Competative'),
             ('Social', 'Social')], validators=[DataRequired()])
@@ -36,4 +36,9 @@ class EventManagement(FlaskForm):
     description = StringField('Description')
 
     submit = SubmitField("Submit")
+
+class TicketForm(FlaskForm):
+    
+    quantity = IntegerField("Ticket Amount", validators=[DataRequired()])
+    submit = SubmitField("Attend")
 
