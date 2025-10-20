@@ -23,6 +23,7 @@
                     <p>Date: {{event.date}}</p>
                     <p>start Time: {{event.time}}</p>
                     <p>Venu: {{event.location}}</p>
+                    <p>Tickets: {{event.availability}}</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="orange" class="bi bi-dot" viewBox="0 0 16 16">
                       <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
                     </svg> {{event.status}}
@@ -39,6 +40,9 @@
       <div class="col-12 mt-3 d-flex justify-content-center">
         <h3 class="pixel-font">Booking</h3>
       </div>
+      {% if error %}
+      <p class="bg-warning fw-bold text-center">{{error}}</p>
+      {% endif %}
       <div class="col-12 col-md-6 d-flex  justify-content-md-end">
         <p class="pixel-font">ticket number: </p>
       </div>
