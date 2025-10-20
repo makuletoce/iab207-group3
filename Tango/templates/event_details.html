@@ -60,9 +60,23 @@
     </div>
 
     <!-- Comment Element containing sample comments -->
+    
+    <div id="comments" class="row mt-lg-3 ms-1 me-1"> 
+    <div class="rounded-1 col-12 bg-dark-subtle comment-platform">
+      <h2>Comments</h2>
+    <div class="input-group m-2 me-1">
+      <input type="text" class="form-control" placeholder="Amazing Event!" aria-label="Amazing Event!" aria-describedby="button-addon2">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Post</button>
+    </div> 
+     
+    
+    {% if comments|length == 0 %}
+      <p class="text-muted ms-3 mt-4 text-center fw-bold">No comments yet for this event.</p>
+    
+    {% else %}
     {% for c in comments[:3] %}
     <div id="comment-box" class="row rounded-2 m-3 comment-box bg-body">
-
+      
       <div class="col-2 d-flex justify-content-start align-items-center">
         <!-- person icon -->
         <svg width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" aria-hidden="true">
@@ -91,9 +105,6 @@
       </div>
     </div>
     {% endfor %}
-
-    {% if comments|length == 0 %}
-      <p class="text-muted ms-3">No comments yet for this event.</p>
     {% endif %}
 
 
