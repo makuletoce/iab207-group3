@@ -22,7 +22,7 @@
                   <div class="carousel-item active" data-bs-interval="100000">
                     <div class="cards-wrapper">
                     
-                        {% for event in events %}
+                        {% for event in events[0:3] %}
                         <div id="competative-card" class="card card-main collapse show">
                             <img src={{'../static/img/' + event.image}} class="card-img-top">
                             <div class="card-body" style="background-color: transparent;">
@@ -41,7 +41,7 @@
                     <div class="cards-wrapper">
                       
                     <!-- TO DO dynamic 3 card content  -->
-                    {% for event in events %}
+                    {% for event in events[3:6] %}
                         <div id="competative-card" class="card card-main collapse show">
                             <img src={{'../static/img/' + event.image}} class="card-img-top">
                             <div class="card-body" style="background-color: transparent;">
