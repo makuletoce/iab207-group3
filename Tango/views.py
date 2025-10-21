@@ -5,14 +5,57 @@ from flask_login import login_required, current_user
 from . import db
 from datetime import date
 from sqlalchemy.orm import joinedload
+from sqlalchemy import or_
 
 mainbp = Blueprint('main', __name__)
 
 
 @mainbp.route('/')
 def landing():
-    events = Event.query.all()
-    return render_template('index.html', events=events)
+    # read filter params from the query string
+    q         = (request.args.get('q') or '').strip()
+    category  = (request.args.get('category') or 'all').lower()
+    status    = (request.args.get('status') or 'all').lower()
+    only_open = (request.args.get('only_open') or '0')  # '1' to show availability > 0
+
+    query = Event.query
+
+    # free-text search over title/description/location
+    if q:
+        like = f"%{q}%"
+        query = query.filter(
+            or_(Event.title.ilike(like),
+                Event.description.ilike(like),
+                Event.location.ilike(like))
+        )
+
+    # category filter (your column is spelled "catagory")
+    if category != 'all':
+        query = query.filter(Event.catagory.ilike(category))
+
+    # status filter – map friendly options to your DB values
+    if status != 'all':
+        status_map = {
+            'available': 'Available',
+            'low': 'low-availability',
+            'soldout': 'sold out',
+            'inactive': 'Inactive'
+        }
+        query = query.filter(Event.status.ilike(status_map.get(status, status)))
+
+    # only show events with tickets available
+    if only_open == '1':
+        query = query.filter(Event.availability > 0)
+
+    events = query.order_by(Event.title.asc()).all()
+    return render_template(
+        'index.html',
+        events=events,
+        q=q,
+        category=category,
+        status=status,
+        only_open=only_open
+    )
 
 @mainbp.route('/managment', methods=['GET', 'POST'] )
 @login_required

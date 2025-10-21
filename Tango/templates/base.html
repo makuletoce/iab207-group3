@@ -36,12 +36,15 @@
         
         
         <!-- Right side: search + login -->
-        <div class="d-flex align-items-center" style="margin-right: 50px;">
-          <form class="d-flex me-2" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn search-btn" type="submit">Search</button>
-            
-          </form>
+        <form class="d-flex me-2" role="search" method="get" action="{{ url_for('main.landing') }}">
+          <input class="form-control me-2"
+                type="search"
+                name="q"
+                placeholder="Search events…"
+                value="{{ request.args.get('q','') }}">
+          <button class="btn search-btn" type="submit">Search</button>
+        </form>
+
 
         </div>
       </div>

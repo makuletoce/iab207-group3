@@ -68,42 +68,50 @@
     </div>
   </div>
 
-  <div id="filter" class="container-sm col-12 d-flex justify-content-center mt-5">
-   
-    <h2 class="pixel-font d-none d-md-block">Events</h2>
-    <div class="dropdown d-none d-md-block d-lg-none" >
-      <button class="btn btn-secondary dropdown-toggle button-filter" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-        <div class="icon-link" href="#" style="color: #000; text-decoration: none;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
-            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
-          </svg>
-        </div>
-      </button>
+<div class="container-sm col-12 d-flex justify-content-center mt-5">
+  <form class="row g-2 justify-content-center mb-4"
+        method="get"
+        action="{{ url_for('main.landing') }}"
+        style="max-width: 900px; width: 100%;">
+    
+    <div class="col-md-5">
+      <input type="search" name="q" class="form-control"
+             placeholder="Search title, description, or location…"
+             value="{{ q or '' }}">
+    </div>
 
-        <ul class="dropdown-menu">
-         
-          <li style="margin-left: 10px;">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-bs-toggle="collapse" data-bs-target="#competative-card" checked>
-            <label class="form-check-label" for="defaultCheck1">
-              Competative
-            </label>
-          </li>
+    <div class="col-md-3">
+      <select name="category" class="form-select">
+        <option value="all" {{ 'selected' if category=='all' else '' }}>All categories</option>
+        <option value="casual" {{ 'selected' if category=='casual' else '' }}>Casual</option>
+        <option value="competative" {{ 'selected' if category=='competative' else '' }}>Competative</option>
+        <option value="social" {{ 'selected' if category=='social' else '' }}>Social</option>
+      </select>
+    </div>
 
-          <li style="margin-left: 10px;">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" data-bs-toggle="collapse" data-bs-target="#casual-card" checked>
-            <label class="form-check-label" for="defaultCheck2">
-              Casual
-            </label>
-          </li>
-          
-          <li style="margin-left: 10px;">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-            <label class="form-check-label" for="defaultCheck3">
-              Social
-            </label>
-          </li>
-        </ul>
+    <div class="col-md-3">
+      <select name="status" class="form-select">
+        <option value="all" {{ 'selected' if status=='all' else '' }}>Any status</option>
+        <option value="available" {{ 'selected' if status=='available' else '' }}>Available</option>
+        <option value="low" {{ 'selected' if status=='low' else '' }}>Low availability</option>
+        <option value="soldout" {{ 'selected' if status=='soldout' else '' }}>Sold Out</option>
+      </select>
+    </div>
+
+    <div class="col-12 d-flex align-items-center justify-content-center gap-3 mt-2">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="onlyOpen"
+               name="only_open" value="1" {{ 'checked' if only_open=='1' else '' }}>
+        <label class="form-check-label" for="onlyOpen">Only show available</label>
       </div>
+      <button type="submit" class="btn btn-primary">Filter</button>
+      {% if q or category!='all' or status!='all' or only_open=='1' %}
+        <a class="btn btn-outline-secondary" href="{{ url_for('main.landing') }}">Clear</a>
+      {% endif %}
+    </div>
+  </form>
+</div>
+
 
   </div>
 
