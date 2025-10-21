@@ -8,7 +8,7 @@ class Event(db.Model):
     title = db.Column(db.String(64), unique=True, index=True)
     description = db.Column(db.String(500), nullable=False)
     image = db.Column(db.String(60), nullable=False, default='casual-img.jpg')
-    availability = db.Column(db.Integer, nullable=False) # number of tickets 
+    availability = db.Column(db.Integer, default=100) # number of tickets 
     status = db.Column(db.String(64), index=True, nullable=False, default="Available")# Available, low-availability, sold out
     date = db.Column(db.String, nullable=False)
     time = db.Column(db.String(20), nullable=False)
@@ -37,6 +37,7 @@ class Ticket(db.Model):
     def __repr__(self):
         return "status: {}, purchased {}, id {}".format(self.status, self.purchase_date, self.id)
     
+
 class Comment(db.Model):
     __tablename__ = 'comments'
 
@@ -50,6 +51,8 @@ class Comment(db.Model):
 
     def __repr__(self):
         return "by {}, at {}, for{}".format(self.user_id, self.date_posted, self.event_id)
+
+
 
 class User(db.Model, UserMixin):
     __tablename__='users'

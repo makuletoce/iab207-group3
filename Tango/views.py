@@ -51,6 +51,32 @@ def eventDetails(event_id):
     form = TicketForm()
     error = None
 
+# ------------- TICKET STATUS SECTION ------------- #
+
+
+    # ----- Check ticket availability -----
+    if event.availability <= 0:
+        event.status = 'Sold Out'
+        db.session.commit()
+        flash("Tickets are sold out for this event!", "danger")
+        return redirect(url_for('main.events'))
+
+    # ----- Simulate a ticket purchase -----
+    event.availability -= 1
+
+    # ----- Update status dynamically -----
+    if event.availability == 0:
+        event.status = 'Sold Out'
+    elif event.availability < 10:  # optional threshold
+        event.status = 'Low Availability'
+    else:
+        event.status = 'Available'
+
+    db.session.commit()
+    flash(f"Ticket purchased! {event.availability} remaining.", "success")
+
+    # ------------- COMMENTS SECTION ------------- 
+
     # pull comments for this event and eager-load each comment's user
     comments = (
         Comment.query
