@@ -240,6 +240,23 @@ label {
 
 }
 
+.brand-text {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #ffb86b; /* match your theme */
+}
+
+.user-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
 
 
 }
@@ -474,6 +491,21 @@ label {
     backdrop-filter:  blur(30px);
     background: rgba(29, 28, 28, 0.61);
     justify-content: space-between;
+}
+
+/* Tango user state badge styling */
+.user-badge {
+  display: inline-block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.6rem;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #ff9d00, #ff3fd0);
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 6px;
+  box-shadow: 0 0 4px #ff9d00, 0 0 6px #ff3fd0;
+  text-transform: uppercase;
+  transform: translateY(-1px);
 }
 
 }

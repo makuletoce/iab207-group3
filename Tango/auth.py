@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
 from .forms import LoginForm, SignUpForm
 from .models import User
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from . import db
@@ -31,10 +31,12 @@ def login():
         error = "Incorrect Password"
 
        if error is None:
-         print("user is logged in")
-         #login user
-         login_user(u1)
-         return redirect('/')
+        print("user is logged in")
+        # set DB status then login
+        u1.status = 'Logged in'
+        db.session.commit()
+        login_user(u1)
+        return redirect('/')
         
        else:
          print(error)
@@ -43,7 +45,12 @@ def login():
     return render_template('Login.html', form=form)
 
 @bd.route('/logout')
+@login_required
 def logout():
+   # mark DB status before logging out
+   if current_user.is_authenticated:
+       current_user.status = 'Logged out'
+       db.session.commit()
    logout_user()
    return redirect('/')
 
@@ -67,7 +74,8 @@ def signup():
                         password_hash=pwd_hash,
                         address=user_address)
         
-        
+        new_user.status = 'Logged out'
+
         db.session.add(new_user)
         db.session.commit()
         return redirect('/')
