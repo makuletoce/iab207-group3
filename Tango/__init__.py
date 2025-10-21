@@ -18,6 +18,9 @@ def create_app():
     from . import models
     db.init_app(app)
 
+    from .errors import errorsbp
+    app.register_blueprint(errorsbp)
+
     with app.app_context():
         db.create_all()
         # init_tables() used on first startup to init some tables 
