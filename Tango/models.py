@@ -7,8 +7,8 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), unique=True, index=True)
     description = db.Column(db.String(500), nullable=False)
-    image = db.Column(db.String(60), nullable=False, default='casual-img.jpg')
-    availability = db.Column(db.Integer, default=100) # number of tickets 
+    image = db.Column(db.String(60), nullable=False, default='casual-image.jpg')
+    availability = db.Column(db.Integer, nullable=False) # number of tickets 
     status = db.Column(db.String(64), index=True, nullable=False, default="Available")# Available, low-availability, sold out
     date = db.Column(db.String, nullable=False)
     time = db.Column(db.String(20), nullable=False)
