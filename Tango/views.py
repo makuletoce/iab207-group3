@@ -109,3 +109,4 @@ def eventDetails(event_id):
             return redirect(url_for("main.landing"))
             
     return render_template('event_details.html', event=event, form=form, comments=comments, error=error)
+
