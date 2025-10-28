@@ -23,6 +23,7 @@
                     <p>Date: {{event.date}}</p>
                     <p>start Time: {{event.time}}</p>
                     <p>Venu: {{event.location}}</p>
+                    <p>Tickets: {{event.availability}}</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="orange" class="bi bi-dot" viewBox="0 0 16 16">
                       <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
                     </svg> {{event.status}}
@@ -39,6 +40,9 @@
       <div class="col-12 mt-3 d-flex justify-content-center">
         <h3 class="pixel-font">Booking</h3>
       </div>
+      {% if error %}
+      <p class="bg-warning fw-bold text-center">{{error}}</p>
+      {% endif %}
       <div class="col-12 col-md-6 d-flex  justify-content-md-end">
         <p class="pixel-font">ticket number: </p>
       </div>
@@ -67,12 +71,16 @@
     <div class="input-group m-2 me-1">
       <input type="text" class="form-control" placeholder="Amazing Event!" aria-label="Amazing Event!" aria-describedby="button-addon2">
       <button class="btn btn-outline-secondary" type="button" id="button-addon2">Post</button>
-    </div>
-
-    <!-- Comment Element containing dynamic comments -->
+    </div> 
+     
+    
+    {% if comments|length == 0 %}
+      <p class="text-muted ms-3 mt-4 text-center fw-bold">No comments yet for this event.</p>
+    
+    {% else %}
     {% for c in comments[:3] %}
     <div id="comment-box" class="row rounded-2 m-3 comment-box bg-body">
-
+      
       <div class="col-2 d-flex justify-content-start align-items-center">
         <!-- person icon -->
         <svg width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" aria-hidden="true">
@@ -101,9 +109,6 @@
       </div>
     </div>
     {% endfor %}
-
-    {% if comments|length == 0 %}
-      <p class="text-muted ms-3">No comments yet for this event.</p>
     {% endif %}
 
 {% endblock %}

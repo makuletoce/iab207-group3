@@ -51,7 +51,7 @@ def eventDetails(event_id):
     form = TicketForm()
     error = None
 
-    # 🔹 pull comments for this event and eager-load each comment's user
+    # pull comments for this event and eager-load each comment's user
     comments = (
         Comment.query
         .options(joinedload(Comment.user))        # so c.user is usable in the template
@@ -68,15 +68,18 @@ def eventDetails(event_id):
             flash(error)
             return redirect(url_for("auth.login"))
         
+        elif event.availability < form.quantity.data:
+            error="There are not enough tickets to complete Purchase"
+        
         # make a new ticket for the amount of tickets ordered
         else:
+            event.availability = event.availability - form.quantity.data
             for new_ticket in range(form.quantity.data):
                 new_ticket = Ticket(purchase_date = date.today(),
                                     event_id = event.id,
                                     user_id = current_user.id)
                 db.session.add(new_ticket)
-                db.session.commit()
-                return redirect(url_for("main.landing"))
+            db.session.commit()
+            return redirect(url_for("main.landing"))
             
-    return render_template('event_details.html', event=event, form=form, comments=comments)
-
+    return render_template('event_details.html', event=event, form=form, comments=comments, error=error)
