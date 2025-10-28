@@ -65,13 +65,20 @@
 
     <!-- Comment Element containing sample comments -->
     
-    <div id="comments" class="row mt-lg-3 ms-1 me-1"> 
-    <div class="rounded-1 col-12 bg-dark-subtle comment-platform">
-      <h2>Comments</h2>
-    <div class="input-group m-2 me-1">
-      <input type="text" class="form-control" placeholder="Amazing Event!" aria-label="Amazing Event!" aria-describedby="button-addon2">
-      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Post</button>
-    </div> 
+    {% if current_user.is_authenticated %}
+      <form method="POST" action="">
+        {{ comment_form.hidden_tag() }}
+        <div class="input-group m-2 me-1">
+          {{ comment_form.comment(class="form-control", placeholder="Write a comment...") }}
+          {{ comment_form.submit_comment(class="btn btn-outline-secondary") }}
+        </div>
+      </form>
+    {% else %}
+      <div class="input-group m-2 me-1">
+        <input type="text" class="form-control" placeholder="Log in to post a comment" disabled>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary">Log in</a>
+      </div>
+    {% endif %}
      
     
     {% if comments|length == 0 %}

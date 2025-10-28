@@ -42,3 +42,7 @@ class TicketForm(FlaskForm):
     quantity = IntegerField("Ticket Amount", validators=[DataRequired()])
     submit = SubmitField("Attend")
 
+class CommentForm(FlaskForm):
+    comment = StringField('Comment', validators=[DataRequired()])
+    submit_comment = SubmitField('Post')
+
