@@ -3,7 +3,7 @@ from .forms import EventManagement, TicketForm, CommentForm
 from .models import Ticket, Event, Comment
 from flask_login import login_required, current_user
 from . import db
-from datetime import date
+from datetime import date, datetime
 from sqlalchemy.orm import joinedload
 from sqlalchemy import or_
 import os
@@ -69,7 +69,19 @@ def eventManagment(event_id):
     
     if event_id is None :
         form = EventManagement()
+        today = date.today().isoformat()  # e.g. "2025-10-29"
+
         if form.validate_on_submit():
+            
+            # --- Duplicate title check ---
+            existing_event = Event.query.filter_by(title=form.event_name.data).first()
+            if existing_event:
+                flash("An event with this title already exists. Please choose another title.", "danger")
+                return render_template('event_managment.html', form=form, today=today)
+            
+             # --- If no duplicate, proceed ---
+            event_date = form.event_date.data  # datetime.date
+
             if form.image.data:
                 filename = secure_filename(form.image.data.filename)
                 img_path = os.path.join(current_app.root_path, 'static', 'img', filename)
@@ -122,7 +134,8 @@ def eventManagment(event_id):
             flash('Event Updated')
             return redirect(url_for('main.landing'))             
 
-    return render_template('event_managment.html', events=user_events, form=form, event_id=event_id)
+    return render_template('event_managment.html', events=user_events, form=form, event_id=event_id, today=today)
+
 
 @mainbp.route('/history')
 @login_required
@@ -139,6 +152,17 @@ def eventDetails(event_id):
     form = TicketForm()
     comment_form = CommentForm()
     error = None
+
+    # --- Update event status BEFORE display (for GET requests too) ---
+    if event.availability == 0:
+        event.status = 'Sold Out'
+    elif event.availability <= 15:
+        event.status = 'Low Availability'
+    else:
+        event.status = 'Available'
+    db.session.commit()
+
+    
 
     # pull comments for this event and eager-load each comment's user
     comments = (
@@ -166,7 +190,7 @@ def eventDetails(event_id):
         return redirect(url_for('main.eventDetails', event_id=event.id))
     
     if form.validate_on_submit():
-        
+         
         # if not logged in
         if  not current_user.is_authenticated:
             error="You need to be logged in to attend events"
@@ -175,16 +199,32 @@ def eventDetails(event_id):
         
         elif event.availability < form.quantity.data:
             error="There are not enough tickets to complete Purchase"
+
+        
         
         # make a new ticket for the amount of tickets ordered
         else:
             event.availability = event.availability - form.quantity.data
+
+            
             for new_ticket in range(form.quantity.data):
                 new_ticket = Ticket(purchase_date = date.today(),
                                     event_id = event.id,
                                     user_id = current_user.id)
                 db.session.add(new_ticket)
+
+
+             #-------- Update event status again after purchase-------
+            if event.availability == 0:
+                event.status = 'Sold Out'
+            elif event.availability <= 15:
+                event.status = 'Low Availability'
+            else:
+                event.status = 'Available'
+
+
             db.session.commit()
+            flash("Tickets successfully purchased!")
             return redirect(url_for("main.landing"))
             
     return render_template('event_details.html', event=event, form=form, comment_form=comment_form, comments=comments, error=error)
