@@ -42,6 +42,17 @@ body{
     
 }
 
+.no-results {
+  text-align: center;
+  color: #ff9100;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow:
+    2px 2px #4a0071,
+    -2px -2px #4a0071,
+    2px -2px #4a0071,
+    -2px 2px #4a0071;
+}
+
 
 .btn-secondary.button-filter {
   background: linear-gradient(90deg, rgba(255,157,0,1) 0%, rgba(199,87,175,1) 71%, rgba(237,83,232,1) 100%);

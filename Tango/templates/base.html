@@ -37,11 +37,13 @@
         
         <!-- Right side: search + login -->
         <div class="d-flex align-items-center" style="margin-right: 50px;">
-          <form class="d-flex me-2" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+          <form class="d-flex mt-2" role="search" action="{{ url_for('main.search') }}" method="get">
+            <input class="form-control me-2" type="search" name="q"
+                  value="{{ request.args.get('q', '') }}" placeholder="Search" aria-label="Search" />
             <button class="btn search-btn" type="submit">Search</button>
-            
           </form>
+
+
 
         </div>
       </div>

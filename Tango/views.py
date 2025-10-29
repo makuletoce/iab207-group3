@@ -5,8 +5,29 @@ from flask_login import login_required, current_user
 from . import db
 from datetime import date
 from sqlalchemy.orm import joinedload
+from sqlalchemy import or_
+
 
 mainbp = Blueprint('main', __name__)
+
+@mainbp.route('/search')
+def search():
+    q = request.args.get('q', '').strip()
+
+    if not q:
+        return redirect(url_for('main.landing'))
+
+    results = (
+        Event.query.filter(
+            Event.title.ilike(f"%{q}%") |
+            Event.description.ilike(f"%{q}%") |
+            Event.location.ilike(f"%{q}%") |
+            Event.catagory.ilike(f"%{q}%")
+        ).all()
+    )
+
+    return render_template('index.html', events=results, search_query=q)
+
 
 
 @mainbp.route('/')
