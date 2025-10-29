@@ -113,8 +113,9 @@
     <div class="p-4 rounded-4 shadow" style="background-color: #535353;">
       <div class="col-12 justify-content-center text-center">
         {% if events%}
+        <p class="pixel-font text-sm mb-4">click on events to edit</p>
         {%for event in events%}
-          <a class="pixel-font" href="{{ url_for('main.eventManagment', event_id=event.id) }}">{{event.title}}</a>
+          <a class="pixel-font m-2" href="{{ url_for('main.eventManagment', event_id=event.id) }}">{{event.title}}</a>
           {%endfor%}
         {%else%}
           <p class="pixel-font">No Events</p>
