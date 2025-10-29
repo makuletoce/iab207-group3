@@ -120,13 +120,37 @@
           <div class="card-body" style="background-color: transparent;">
             <h5 class="card-title">{{event.title}}</h5>
           </div>
+
+          <!-- EVENT STATUS UPDATES -->  
+
           <ul class="list-group list-group-flush">
-            <li class="list-group-item list-group-item-main">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-              </svg> {{event.status}}
+            <li class="list-group-item list-group-item-main text-center">
+
+              {% if event.computed_status == 'Sold Out' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="red" class="bi bi-dot" viewBox="0 0 16 16">
+                  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                </svg> 
+                <span class="event-status-text">{{ event.computed_status }}</span>
+
+              {% elif event.computed_status == 'Low Availability' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="orange" class="bi bi-dot" viewBox="0 0 16 16">
+                  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                </svg>
+                <span class="event-status-text">{{ event.computed_status }}</span>
+
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+                  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                </svg>
+                <span class="event-status-text">{{ event.computed_status }}</span>
+              {% endif %}
+
             </li>
           </ul>
+
+
+
+
           <a href="{{url_for('main.eventDetails', event_id=event.id)}}" class="stretched-link"></a>
       </div>
        {% endfor %}
