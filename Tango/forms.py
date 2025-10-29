@@ -23,11 +23,11 @@ class SignUpForm(FlaskForm):
 
 class EventManagement(FlaskForm):
     
-    event_name = StringField('Event Name')
-    event_date = StringField('Event Date')
-    event_time = StringField('Event Time')
+    title = StringField('Event Name')
+    date = StringField('Event Date')
+    time = StringField('Event Time')
     location = StringField('Location')
-    num_of_tickets = IntegerField("Spaces Available")
+    availability = IntegerField("Spaces Available")
     catagory = SelectField('Catagory', choices=[
             ('Casual', 'Casual'),
             ('Competative', 'Competative'),
@@ -36,6 +36,8 @@ class EventManagement(FlaskForm):
     description = StringField('Description')
 
     submit = SubmitField("Submit")
+
+    cancel = SubmitField('cancel')
 
 class TicketForm(FlaskForm):
     
