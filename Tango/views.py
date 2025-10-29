@@ -75,6 +75,8 @@ def eventManagment(event_id):
                db.session.commit()
                flash('Event Canceled')
                return redirect(url_for('main.landing'))
+           
+           #add edited data to database
            else:
             event.title = form.title.data
             event.description = form.description.data
