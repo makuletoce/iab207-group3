@@ -1,5 +1,4 @@
 from . import db
-from datetime import datetime
 from flask_login import UserMixin
 
 class Event(db.Model):
@@ -11,25 +10,15 @@ class Event(db.Model):
     image = db.Column(db.String(60), nullable=False, default='casual-image.jpg')
     availability = db.Column(db.Integer, nullable=False) # number of tickets 
     status = db.Column(db.String(64), index=True, nullable=False, default="Available")# Available, low-availability, sold out
-    date = db.Column(db.Date, nullable=False)
-    time = db.Column(db.Time, nullable=True)
-    category = db.Column(db.String(60), nullable=False, default="No Category") # casual, competative, social
+    date = db.Column(db.String, nullable=False)
+    time = db.Column(db.String(20), nullable=False)
+    catagory = db.Column(db.String(60), nullable=False, default="No Category") # casual, competative, social
     location = db.Column(db.String(500), nullable=False)
 
     host = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     tickets = db.relationship('Ticket', backref='event')
     comments = db.relationship('Comment', backref='event') 
-
-    # computed property
-    @property
-    def computed_status(self):
-        if self.availability == 0:
-            return 'Sold Out'
-        elif self.availability <= 15:
-            return 'Low Availability'
-        else:
-            return 'Available'
 
     def __repr__(self):
         return "title: {}, description {}, id {},".format(self.title, self.description, self.id)
@@ -39,7 +28,7 @@ class Ticket(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(64), nullable=False, default='Active') # Active, Inactive
-    purchase_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    purchase_date = db.Column(db.Date, nullable=False)
 
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

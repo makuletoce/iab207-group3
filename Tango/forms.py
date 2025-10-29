@@ -1,43 +1,44 @@
 from flask_wtf import FlaskForm
-from wtforms import (
-    StringField, PasswordField, SubmitField, SelectField,
-    IntegerField, DateField, TimeField, TelField
-)
-from wtforms.validators import DataRequired, NumberRange, Email, Length
+from wtforms import StringField, SubmitField, SelectField, IntegerField
+from wtforms.validators import DataRequired
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email Address', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    
+    email = StringField('Email Address', validators=[DataRequired()])
+    password = StringField('Password' , validators=[DataRequired()])    
     submit = SubmitField("Submit")
 
 
 class SignUpForm(FlaskForm):
-    first_name = StringField('First Name', validators=[DataRequired(), Length(max=50)])
-    last_name = StringField('Last Name', validators=[DataRequired(), Length(max=50)])
-    phone = TelField('Phone Number', validators=[DataRequired(), Length(min=8, max=15)])
-    email = StringField('Email Address', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
-    address = StringField('Street Address', validators=[DataRequired(), Length(max=100)])
+    
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    phone = StringField('Phone Number', validators=[DataRequired()])
+    email = StringField('Email Address', validators=[DataRequired()])
+    password = StringField('Password' , validators=[DataRequired()])    
+    address = StringField('Street Address', validators=[DataRequired()])
+
     submit = SubmitField("Submit")
-
-
 
 class EventManagement(FlaskForm):
-    event_name = StringField('Event Name', validators=[DataRequired(), Length(max=100)])
-    event_date = DateField('Event Date', validators=[DataRequired()], format='%Y-%m-%d')
-    event_time = TimeField('Event Time', format='%H:%M', validators=[DataRequired()])
-    location = StringField('Location', validators=[DataRequired(), Length(max=100)])
-    num_of_tickets = IntegerField("Spaces Available", validators=[DataRequired(), NumberRange(min=1)])
-    category = SelectField('Category', choices=[
-        ('Casual', 'Casual'),
-        ('Competitive', 'Competitive'),
-        ('Social', 'Social')
-    ], validators=[DataRequired()])
-    description = StringField('Description', validators=[DataRequired(), Length(max=500)])
+    
+    event_name = StringField('Event Name')
+    event_date = StringField('Event Date')
+    event_time = StringField('Event Time')
+    location = StringField('Location')
+    num_of_tickets = IntegerField("Spaces Available")
+    catagory = SelectField('Catagory', choices=[
+            ('Casual', 'Casual'),
+            ('Competative', 'Competative'),
+            ('Social', 'Social')], validators=[DataRequired()])
+
+    description = StringField('Description')
+
     submit = SubmitField("Submit")
 
-
 class TicketForm(FlaskForm):
-    quantity = IntegerField("Ticket Amount", validators=[DataRequired(), NumberRange(min=1)])
+    
+    quantity = IntegerField("Ticket Amount", validators=[DataRequired()])
     submit = SubmitField("Attend")
+
