@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date, time
 from flask_login import LoginManager
+from flask import Flask, render_template
 
 db = SQLAlchemy()
 
@@ -37,6 +38,20 @@ def create_app():
     
     from .views import mainbp
     app.register_blueprint(mainbp)
+
+    @app.errorhandler(404)
+    def not_found(e):
+        print(">>> 404 handler hit")
+        return render_template('errors/404.html'), 404
+
+    @app.errorhandler(500)
+    def internal_error(e):
+        try:
+            db.session.rollback()
+        except Exception:
+            pass
+        print(">>> 500 handler hit")
+        return render_template('errors/500.html'), 500
 
     from .auth import bd
     app.register_blueprint(bd)
