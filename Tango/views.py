@@ -1,12 +1,33 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from .forms import EventManagement, TicketForm
+from .forms import EventManagement, TicketForm, CommentForm
 from .models import Ticket, Event, Comment
 from flask_login import login_required, current_user
 from . import db
 from datetime import date
 from sqlalchemy.orm import joinedload
+from sqlalchemy import or_
+
 
 mainbp = Blueprint('main', __name__)
+
+@mainbp.route('/search')
+def search():
+    q = request.args.get('q', '').strip()
+
+    if not q:
+        return redirect(url_for('main.landing'))
+
+    results = (
+        Event.query.filter(
+            Event.title.ilike(f"%{q}%") |
+            Event.description.ilike(f"%{q}%") |
+            Event.location.ilike(f"%{q}%") |
+            Event.catagory.ilike(f"%{q}%")
+        ).all()
+    )
+
+    return render_template('index.html', events=results, search_query=q)
+
 
 
 @mainbp.route('/')
@@ -49,6 +70,7 @@ def eventDetails(event_id):
     # get event id from url
     event = Event.query.get_or_404(event_id)
     form = TicketForm()
+    comment_form = CommentForm()
     error = None
 
     # pull comments for this event and eager-load each comment's user
@@ -59,6 +81,22 @@ def eventDetails(event_id):
         .order_by(Comment.date_posted.desc())
         .all()
     )
+
+    if comment_form.validate_on_submit() and comment_form.submit_comment.data:
+        if not current_user.is_authenticated:
+            flash("You need to be logged in to comment!")
+            return redirect(url_for("auth.login"))
+        
+        new_comment = Comment(
+            comment=comment_form.comment.data,
+            event_id=event.id,
+            user_id=current_user.id,
+            date_posted=date.today()
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        flash("Comment posted successfully!")
+        return redirect(url_for('main.eventDetails', event_id=event.id))
     
     if form.validate_on_submit():
         
@@ -82,4 +120,4 @@ def eventDetails(event_id):
             db.session.commit()
             return redirect(url_for("main.landing"))
             
-    return render_template('event_details.html', event=event, form=form, comments=comments, error=error)
+    return render_template('event_details.html', event=event, form=form, comment_form=comment_form, comments=comments, error=error)

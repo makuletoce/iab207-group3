@@ -42,6 +42,69 @@ body{
     
 }
 
+.no-results {
+  text-align: center;
+  color: #ff9100;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow:
+    2px 2px #4a0071,
+    -2px -2px #4a0071,
+    2px -2px #4a0071,
+    -2px 2px #4a0071;
+}
+
+
+.btn-secondary.button-filter {
+  background: linear-gradient(90deg, rgba(255,157,0,1) 0%, rgba(199,87,175,1) 71%, rgba(237,83,232,1) 100%);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Hover / focus / open states */
+.btn.button-filter:hover,
+.btn.button-filter:focus,
+.show > .btn.button-filter {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(255,142,46,1) 0%, rgba(199,87,175,1) 71%, rgba(255,39,177,1) 100%);
+  box-shadow: 0 0 0 .2rem rgba(255,136,0,.25);
+}
+
+/* Make the caret white */
+.btn.button-filter.dropdown-toggle::after {
+  border-top-color: #fff;
+}
+
+/* Match the dropdown to gradient theme and keep it on top */
+.dropdown-menu {
+  background: linear-gradient(90deg, rgba(255,157,0,1) 0%, rgba(199,87,175,1) 71%, rgba(237,83,232,1) 100%);
+  border: 0;
+  border-radius: 10px;
+  z-index: 2000; /* sit above carousels etc. */
+}
+
+/* Readable items on the gradient */
+.dropdown-item,
+.dropdown-header,
+.dropdown-menu label {
+  color: #fff;
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background: rgba(0,0,0,.15);
+  color: #fff;
+}
+
+/*keep labels tidy inside the menu */
+.dropdown-menu .form-check-input {
+  margin-right: .5rem;
+}
+
+
 .cards-wrapper{
     display: flex;
     backdrop-filter:  blur(30px);
@@ -365,16 +428,6 @@ label {
     backdrop-filter:  blur(30px);
     background: rgba(29, 28, 28, 0.61);
     justify-content: space-between;
-}
-
-.dropdown-menu {
-    background: #ff9d00;
-    background: linear-gradient(90deg, rgba(255, 157, 0, 1) 0%, rgba(199, 87, 175, 1) 71%, rgba(237, 83, 232, 1) 100%);
-}
-
-.button-filter {
-    background: #ff9d00;
-    background: linear-gradient(90deg, rgba(255, 157, 0, 1) 0%, rgba(199, 87, 175, 1) 71%, rgba(237, 83, 232, 1) 100%);
 }
 }
 

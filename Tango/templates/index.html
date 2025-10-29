@@ -71,35 +71,58 @@
   <div id="filter" class="container-sm col-12 d-flex justify-content-center mt-5">
    
     <h2 class="pixel-font d-none d-md-block">Events</h2>
-    <div class="dropdown d-none d-md-block d-lg-none" >
-      <button class="btn btn-secondary dropdown-toggle button-filter" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+    
+    <div class="dropdown ms-2">
+      <button class="btn btn-secondary dropdown-toggle button-filter" type="button"
+              data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
         <div class="icon-link" href="#" style="color: #000; text-decoration: none;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-filter" viewBox="0 0 16 16">
             <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
           </svg>
         </div>
       </button>
 
-        <ul class="dropdown-menu">
-         
-          <li style="margin-left: 10px;">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-bs-toggle="collapse" data-bs-target="#competative-card" checked>
-            <label class="form-check-label" for="defaultCheck1">
-              Competative
+        <ul class="dropdown-menu p-2" style="min-width: 220px;">
+          <li class="dropdown-header">Category</li>
+          <li>
+            <label class="dropdown-item">
+              <input class="form-check-input me-2" type="checkbox" id="cat-competitive">
+              Competitive
             </label>
           </li>
-
-          <li style="margin-left: 10px;">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" data-bs-toggle="collapse" data-bs-target="#casual-card" checked>
-            <label class="form-check-label" for="defaultCheck2">
+          <li>
+            <label class="dropdown-item">
+              <input class="form-check-input me-2" type="checkbox" id="cat-casual">
               Casual
             </label>
           </li>
-          
-          <li style="margin-left: 10px;">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-            <label class="form-check-label" for="defaultCheck3">
+          <li>
+            <label class="dropdown-item">
+              <input class="form-check-input me-2" type="checkbox" id="cat-social">
               Social
+            </label>
+          </li>
+
+          <li><hr class="dropdown-divider"></li>
+
+          <li class="dropdown-header">Availability</li>
+          <li>
+            <label class="dropdown-item">
+              <input class="form-check-input me-2" type="checkbox" id="avail-available">
+              Available
+            </label>
+          </li>
+          <li>
+            <label class="dropdown-item">
+              <input class="form-check-input me-2" type="checkbox" id="avail-low">
+              Low
+            </label>
+          </li>
+          <li>
+            <label class="dropdown-item">
+              <input class="form-check-input me-2" type="checkbox" id="avail-soldout">
+              Sold out
             </label>
           </li>
         </ul>
@@ -112,27 +135,35 @@
     <div class="row justify-content-center">
 
 
-      <!-- TO DO dynamic card bulk content -->  
+<!-- TO DO dynamic card bulk content -->
 
+<div class="container-lg d-none d-md-block d-inline">
+  {% if events|length == 0 %}
+    <div class="no-results my-5 text-center">
+      <h3>No events matched “{{ search_query or request.args.get('q','') }}”.</h3>
+      <p class="mt-3 text-light">Try another keyword or reset your filters.</p>
+      <a class="btn btn-warning mt-2" href="{{ url_for('main.landing') }}">Show all events</a>
+    </div>
+  {% else %}
+    <div class="row justify-content-center">
       {% for event in events %}
       <div id="competative-card" class="card card-main collapse show">
-        <img src={{'../static/img/' + event.image}} class="card-img-top" alt="..." style="max-height: 190px;">
-          <div class="card-body" style="background-color: transparent;">
-            <h5 class="card-title">{{event.title}}</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item list-group-item-main">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
-                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-              </svg> {{event.status}}
-            </li>
-          </ul>
-          <a href="{{url_for('main.eventDetails', event_id=event.id)}}" class="stretched-link"></a>
+        <img src="{{ '../static/img/' + event.image }}" class="card-img-top" alt="..." style="max-height: 190px;">
+        <div class="card-body" style="background-color: transparent;">
+          <h5 class="card-title">{{ event.title }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item list-group-item-main">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="green" class="bi bi-dot" viewBox="0 0 16 16">
+              <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+            </svg> {{ event.status }}
+          </li>
+        </ul>
+        <a href="{{ url_for('main.eventDetails', event_id=event.id) }}" class="stretched-link"></a>
       </div>
-       {% endfor %}
-    
+      {% endfor %}
     </div>
-  </div>
+  {% endif %}
+</div>
 
-  </div>
 {% endblock %}
