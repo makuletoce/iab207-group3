@@ -18,11 +18,10 @@ def login():
        print('Form validated')
        user_email = form.email.data
        password = form.password.data
+       
        u1 = User.query.filter_by(email = user_email).first()
-       print(user_email)
-       print(password)
-       print(check_password_hash(u1.password_hash, password)) 
-         #if there is no user with that email
+
+       #if there is no user with that email
        if u1 is None:
         error = "no account assosiated with that email"
 

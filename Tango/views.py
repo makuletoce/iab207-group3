@@ -35,27 +35,63 @@ def landing():
     events = Event.query.all()
     return render_template('index.html', events=events)
 
-@mainbp.route('/managment', methods=['GET', 'POST'] )
+@mainbp.route('/managment', defaults={'event_id': None}, methods=['GET', 'POST'])
+@mainbp.route('/managment/<int:event_id>', methods=['GET', 'POST'])
 @login_required
-def eventManagment():
-    form = EventManagement()
-    if form.validate_on_submit():
-        new_event = Event(title = form.event_name.data,
-                          description = form.description.data,
-                          date = form.event_date.data,
-                          time = form.event_time.data,
-                          location = form.location.data,
-                          catagory = form.catagory.data,
-                          availability = form.num_of_tickets.data,
-                          host = current_user.id
-                          )
+def eventManagment(event_id):
+    
+    user_events = Event.query.filter_by(host=current_user.id).all()
+
+    # if user is coming from managment to start event
+    if event_id is None :
+        #form for adding new events and posting 
+        form = EventManagement()
+        if form.validate_on_submit():
+            new_event = Event(title = form.title.data,
+                            description = form.description.data,
+                            date = form.date.data,
+                            time = form.time.data,
+                            location = form.location.data,
+                            catagory = form.catagory.data,
+                            availability = form.availability.data,
+                            host = current_user.id
+                            )
+            
+            db.session.add(new_event)
+            db.session.commit()
+
+            return redirect(url_for("main.landing"))
         
-        db.session.add(new_event)
-        db.session.commit()
+    # if user is editing an event
+    else:
+        event = Event.query.filter_by(id=event_id).first()
+        form = EventManagement(obj=event)
 
-        return redirect(url_for("main.landing"))
+        if form.validate_on_submit():
+           
+           #if event is canceled
+           if form.cancel.data:
+               event.status = "Canceled"
+               db.session.commit()
+               flash('Event Canceled')
+               return redirect(url_for('main.landing'))
+           
+           #add edited data to database
+           else:
+            event.title = form.title.data
+            event.description = form.description.data
+            event.date  = form.date.data
+            event.time = form.time.data
+            event.location = form.location.data
+            event.catagory = form.catagory.data
+            event.availability = form.availability.data
+            event.host = current_user.id
 
-    return render_template('event_managment.html', form=form)
+            db.session.commit()
+            flash('Event Updated')
+            return redirect(url_for('main.landing'))             
+
+    return render_template('event_managment.html', events=user_events, form=form, event_id=event_id)
 
 @mainbp.route('/history')
 @login_required

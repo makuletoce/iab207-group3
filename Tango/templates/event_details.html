@@ -36,6 +36,7 @@
     </div>
 
      <!-- Booking Element  -->
+    {% if event.status != "Canceled" %}
     <div class="row m-xl-2 m-2 mb-lg-4 d-flex justify-content-center">
       <div class="col-12 mt-3 d-flex justify-content-center">
         <h3 class="pixel-font">Booking</h3>
@@ -62,6 +63,12 @@
         <p class="pixel-font" style="font-size: xx-small; margin-top: 10px;">not Signed in yet click <a href="{{url_for('auth.signup')}}">Here</a><p>
       </div>
     </div>
+
+    {% else %}
+    <div class="col-12 mt-3 d-flex justify-content-center">
+        <h3 class="pixel-font m-5">This Event has been Canceled</h3>
+    </div>
+    {%endif%}
 
     <!-- Comment Element containing sample comments -->
     
