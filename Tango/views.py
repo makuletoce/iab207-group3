@@ -5,6 +5,7 @@ from flask_login import login_required, current_user
 from . import db
 from datetime import date
 from sqlalchemy.orm import joinedload
+from sqlalchemy import or_
 import os
 from werkzeug.utils import secure_filename
 
