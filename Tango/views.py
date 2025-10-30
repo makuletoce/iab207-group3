@@ -38,29 +38,33 @@ def landing():
 @mainbp.route('/managment', defaults={'event_id': None}, methods=['GET', 'POST'])
 @mainbp.route('/managment/<int:event_id>', methods=['GET', 'POST'])
 @login_required
-def eventManagment():
-    form = EventManagement()
-    if form.validate_on_submit():
-        if form.image.data:
-            filename = secure_filename(form.image.data.filename)
-            img_path = os.path.join(current_app.root_path, 'static', 'img', filename)
-            form.image.data.save(img_path)
-        else:
-            filename = 'casual-image.jpg'
+def eventManagment(event_id):
 
-        new_event = Event(title = form.event_name.data,
-                          description = form.description.data,
-                          date = form.event_date.data,
-                          time = form.event_time.data,
-                          location = form.location.data,
-                          catagory = form.catagory.data,
-                          availability = form.num_of_tickets.data,
-                          host = current_user.id,
-                          image = filename
-                          )
-        
-        db.session.add(new_event)
-        db.session.commit()
+    user_events = Event.query.filter_by(host=current_user.id).all()
+    
+    if event_id is None :
+        form = EventManagement()
+        if form.validate_on_submit():
+            if form.image.data:
+                filename = secure_filename(form.image.data.filename)
+                img_path = os.path.join(current_app.root_path, 'static', 'img', filename)
+                form.image.data.save(img_path)
+            else:
+                filename = 'casual-image.jpg'
+
+            new_event = Event(title = form.event_name.data,
+                            description = form.description.data,
+                            date = form.event_date.data,
+                            time = form.event_time.data,
+                            location = form.location.data,
+                            catagory = form.catagory.data,
+                            availability = form.num_of_tickets.data,
+                            host = current_user.id,
+                            image = filename
+                            )
+            
+            db.session.add(new_event)
+            db.session.commit()
 
         return redirect(url_for("main.landing"))
         
