@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-lg d-none d-md-block d-inline">
+  <div class="no-results my-5 text-center">
+    <h3>Something went wrong</h3>
+    <p class="mt-3 text-light">An internal server error occurred. Please try again later.</p>
+    <a class="btn btn-warning mt-2" href="{{ url_for('main.landing') }}">Return to homepage</a>
+  </div>
+</div>
+{% endblock %}
+
+

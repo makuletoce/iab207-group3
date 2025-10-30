@@ -66,10 +66,10 @@ def landing():
 def eventManagment(event_id):
 
     user_events = Event.query.filter_by(host=current_user.id).all()
-    
+    today = date.today().isoformat()  # e.g. "2025-10-29"
+
     if event_id is None :
         form = EventManagement()
-        today = date.today().isoformat()  # e.g. "2025-10-29"
 
         if form.validate_on_submit():
             
