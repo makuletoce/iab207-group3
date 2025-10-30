@@ -1,10 +1,12 @@
-from flask import Blueprint, render_template, request, session, redirect, url_for, flash
+from flask import Blueprint, render_template, request, session, redirect, url_for, flash, current_app
 from .forms import EventManagement, TicketForm, CommentForm
 from .models import Ticket, Event, Comment
 from flask_login import login_required, current_user
 from . import db
 from datetime import date
 from sqlalchemy.orm import joinedload
+import os
+from werkzeug.utils import secure_filename
 
 mainbp = Blueprint('main', __name__)
 
@@ -19,6 +21,13 @@ def landing():
 def eventManagment():
     form = EventManagement()
     if form.validate_on_submit():
+        if form.image.data:
+            filename = secure_filename(form.image.data.filename)
+            img_path = os.path.join(current_app.root_path, 'static', 'img', filename)
+            form.image.data.save(img_path)
+        else:
+            filename = 'casual-image.jpg'
+
         new_event = Event(title = form.event_name.data,
                           description = form.description.data,
                           date = form.event_date.data,
@@ -26,7 +35,8 @@ def eventManagment():
                           location = form.location.data,
                           catagory = form.catagory.data,
                           availability = form.num_of_tickets.data,
-                          host = current_user.id
+                          host = current_user.id,
+                          image = filename
                           )
         
         db.session.add(new_event)
