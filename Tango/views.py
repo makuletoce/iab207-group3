@@ -12,6 +12,9 @@ mainbp = Blueprint('main', __name__)
 
 @mainbp.route('/search')
 def search():
+
+    banner_events = Event.query.all()
+
     q = request.args.get('q', '').strip()
 
     if not q:
@@ -26,14 +29,35 @@ def search():
         ).all()
     )
 
-    return render_template('index.html', events=results, search_query=q)
+    return render_template('index.html', events=results, search_query=q, banner_events = banner_events)
 
 
 
-@mainbp.route('/')
+@mainbp.route('/', methods=['GET','POST'])
 def landing():
-    events = Event.query.all()
-    return render_template('index.html', events=events)
+
+    banner_events = Event.query.all()
+
+    catagory_filters = request.args.getlist('catagory')
+    availability_filters = request.args.getlist('availability')
+
+    query = Event.query
+
+    filters = []
+    if availability_filters:
+        filters.append(Event.status.in_(availability_filters))
+        
+    if catagory_filters:
+        filters.append(Event.catagory.in_(catagory_filters))
+
+    if filters:
+        events = query.filter(or_(*filters)).all()
+
+    else:
+        events = Event.query.all()
+    return render_template('index.html', events=events, banner_events= banner_events)
+
+
 
 @mainbp.route('/managment', defaults={'event_id': None}, methods=['GET', 'POST'])
 @mainbp.route('/managment/<int:event_id>', methods=['GET', 'POST'])
