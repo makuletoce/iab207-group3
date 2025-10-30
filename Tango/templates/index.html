@@ -22,7 +22,7 @@
                   <div class="carousel-item active" data-bs-interval="100000">
                     <div class="cards-wrapper">
                     
-                        {% for event in events[0:3] %}
+                        {% for event in banner_events[0:3] %}
                         <div id="competative-card" class="card card-main collapse show">
                             <img src={{'../static/img/' + event.image}} class="card-img-top">
                             <div class="card-body" style="background-color: transparent;">
@@ -41,7 +41,7 @@
                     <div class="cards-wrapper">
                       
                     <!-- TO DO dynamic 3 card content  -->
-                    {% for event in events[3:6] %}
+                    {% for event in banner_events[3:6] %}
                         <div class="card card-main collapse show">
                             <img src={{'../static/img/' + event.image}} class="card-img-top">
                             <div class="card-body" style="background-color: transparent;">
@@ -84,23 +84,26 @@
       </button>
 
         <ul class="dropdown-menu p-2" style="min-width: 220px;">
-          <li class="dropdown-header">Category</li>
-          <li>
-            <label class="dropdown-item">
-              <input class="form-check-input me-2" type="checkbox" id="cat-competitive">
-              Competitive
-            </label>
+      
+          <form method="get" action="{{url_for('main.landing')}}">
+            <li class="dropdown-header">Category</li>
+            <li>
+              <label class="dropdown-item">
+                <input type="checkbox" onchange="this.form.submit()" name="catagory" value="Casual"
+                  {% if 'Casual' in request.args.getlist('catagory') %}checked{% endif %}> Casual
+              </label>
+            </li>
+            <li>
+              <label class="dropdown-item">
+                <input type="checkbox" onchange="this.form.submit()" name="catagory" value="Competative"
+                  {% if 'Competative' in request.args.getlist('catagory') %}checked{% endif %}> Competative
+              </label>
+            </li>
           </li>
           <li>
             <label class="dropdown-item">
-              <input class="form-check-input me-2" type="checkbox" id="cat-casual">
-              Casual
-            </label>
-          </li>
-          <li>
-            <label class="dropdown-item">
-              <input class="form-check-input me-2" type="checkbox" id="cat-social">
-              Social
+              <input type="checkbox" onchange="this.form.submit()" name="catagory" value="Social"
+                  {% if 'Social' in request.args.getlist('catagory') %}checked{% endif %}> Social
             </label>
           </li>
 
@@ -109,20 +112,20 @@
           <li class="dropdown-header">Availability</li>
           <li>
             <label class="dropdown-item">
-              <input class="form-check-input me-2" type="checkbox" id="avail-available">
-              Available
+              <input type="checkbox" onchange="this.form.submit()" name="availability" value="Available"
+                  {% if 'Available' in request.args.getlist('availability') %}checked{% endif %}> Available
             </label>
           </li>
           <li>
             <label class="dropdown-item">
-              <input class="form-check-input me-2" type="checkbox" id="avail-low">
-              Low
+              <input type="checkbox" onchange="this.form.submit()" name="availability" value="low"
+                  {% if 'low' in request.args.getlist('availability') %}checked{% endif %}> Low
             </label>
           </li>
           <li>
             <label class="dropdown-item">
-              <input class="form-check-input me-2" type="checkbox" id="avail-soldout">
-              Sold out
+              <input type="checkbox" onchange="this.form.submit()" name="availability" value="sold out"
+                  {% if 'sold out' in request.args.getlist('availability') %}checked{% endif %}> Sold out
             </label>
           </li>
         </ul>
@@ -146,6 +149,7 @@
     </div>
   {% else %}
     <div class="row justify-content-center">
+      
       {% for event in events %}
       <div id={{event.catagory}} class="card card-main collapse show">
         <img src="{{ '../static/img/' + event.image }}" class="card-img-top" alt="..." style="max-height: 190px;">
