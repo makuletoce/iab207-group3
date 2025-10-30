@@ -1,12 +1,12 @@
-from flask import Blueprint, render_template, request, session, redirect, url_for, flash
+from flask import Blueprint, render_template, request, session, redirect, url_for, flash, current_app
 from .forms import EventManagement, TicketForm, CommentForm
 from .models import Ticket, Event, Comment
 from flask_login import login_required, current_user
 from . import db
 from datetime import date
 from sqlalchemy.orm import joinedload
-from sqlalchemy import or_
-
+import os
+from werkzeug.utils import secure_filename
 
 mainbp = Blueprint('main', __name__)
 
@@ -38,27 +38,29 @@ def landing():
 @mainbp.route('/managment', defaults={'event_id': None}, methods=['GET', 'POST'])
 @mainbp.route('/managment/<int:event_id>', methods=['GET', 'POST'])
 @login_required
-def eventManagment(event_id):
-    
-    user_events = Event.query.filter_by(host=current_user.id).all()
+def eventManagment():
+    form = EventManagement()
+    if form.validate_on_submit():
+        if form.image.data:
+            filename = secure_filename(form.image.data.filename)
+            img_path = os.path.join(current_app.root_path, 'static', 'img', filename)
+            form.image.data.save(img_path)
+        else:
+            filename = 'casual-image.jpg'
 
-    # if user is coming from managment to start event
-    if event_id is None :
-        #form for adding new events and posting 
-        form = EventManagement()
-        if form.validate_on_submit():
-            new_event = Event(title = form.title.data,
-                            description = form.description.data,
-                            date = form.date.data,
-                            time = form.time.data,
-                            location = form.location.data,
-                            catagory = form.catagory.data,
-                            availability = form.availability.data,
-                            host = current_user.id
-                            )
-            
-            db.session.add(new_event)
-            db.session.commit()
+        new_event = Event(title = form.event_name.data,
+                          description = form.description.data,
+                          date = form.event_date.data,
+                          time = form.event_time.data,
+                          location = form.location.data,
+                          catagory = form.catagory.data,
+                          availability = form.num_of_tickets.data,
+                          host = current_user.id,
+                          image = filename
+                          )
+        
+        db.session.add(new_event)
+        db.session.commit()
 
             return redirect(url_for("main.landing"))
         

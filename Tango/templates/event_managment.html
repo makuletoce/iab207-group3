@@ -69,22 +69,13 @@
             {{ form.description(class="form-control") }}
           </div>
 
-          {% if event_id %}
-
-          <div class="row text-center mt-3">
-            <div class="col-6">
-              {{ form.submit(class="form-control") }}
-            </div>
-            <div class="col-6">
-              {{ form.cancel(class="form-control") }}
-            </div>
+          <div class="mb-3">
+            {{ form.image.label(class="form-label") }}
+            {{ form.image(class="form-control") }}
           </div>
 
-          {%else%}
-          <div class="row text-center mt-3">
-            <div class="col-12">
-              {{ form.submit(class="form-control") }}
-            </div>
+          <div class="text-center">
+            {{ form.submit(class="form-control") }}
           </div>
 
           {% endif %}

@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, SubmitField, SelectField, IntegerField
 from wtforms.validators import DataRequired
 
@@ -34,6 +35,7 @@ class EventManagement(FlaskForm):
             ('Social', 'Social')], validators=[DataRequired()])
 
     description = StringField('Description')
+    image = FileField('Event Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'], 'Images only!')])
 
     submit = SubmitField("Submit")
 
