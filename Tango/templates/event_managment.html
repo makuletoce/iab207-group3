@@ -39,8 +39,8 @@
               {{ form.title(class="form-control") }}
             </div>
             <div class="col-md-6">
-              {{ form.event_date.label(class="form-label") }}
-              {{ form.event_date(class="form-control", type="date",  min=today) }}
+              {{ form.date.label(class="form-label") }}
+              {{ form.date(class="form-control", type="date",  min=today) }}
             </div>
           </div>
 
@@ -61,8 +61,8 @@
               {{ form.location(class="form-control") }}
             </div>
             <div class="col-md-6">
-              {{ form.category.label(class="form-label") }}
-              {{ form.category(class="form-control") }}
+              {{ form.catagory.label(class="form-label") }}
+              {{ form.catagory(class="form-control") }}
             </div>
           </div>
 
@@ -76,11 +76,21 @@
             {{ form.image(class="form-control") }}
           </div>
 
-          <div class="text-center">
-            {{ form.submit(class="form-control") }}
-          </div>
-
-          {% endif %}
+          {% if event_id %}
+          <div class="row text-center mt-3">
+            <div class="col-6">
+              {{ form.submit(class="form-control") }}
+            </div>
+            <div class="col-6">
+              {{ form.cancel(class="form-control") }}
+            </div>
+            {%else%}
+            <div class="row text-center mt-3">
+              <div class="col-12">
+                {{ form.submit(class="form-control") }}
+              </div>
+            </div>
+            {% endif %}
         </form>
       </div>
     </div>

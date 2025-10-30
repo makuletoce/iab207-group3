@@ -13,7 +13,7 @@ class Event(db.Model):
     status = db.Column(db.String(64), index=True, nullable=False, default="Available")# Available, low-availability, sold out
     date = db.Column(db.Date, nullable=False)
     time = db.Column(db.Time, nullable=True)
-    category = db.Column(db.String(60), nullable=False, default="No Category") # casual, competative, social
+    catagory = db.Column(db.String(60), nullable=False, default="No Category") # casual, competative, social
     location = db.Column(db.String(500), nullable=False)
 
     host = db.Column(db.Integer, db.ForeignKey('users.id'))

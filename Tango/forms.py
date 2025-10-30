@@ -27,8 +27,8 @@ class SignUpForm(FlaskForm):
 class EventManagement(FlaskForm):
     
     title = StringField('Event Name', validators=[DataRequired(), Length(max=100)])
-    date = StringField('Event Date', validators=[DataRequired()], format='%Y-%m-%d')
-    time = StringField('Event Time', format='%H:%M', validators=[DataRequired()])
+    date = DateField('Event Date', validators=[DataRequired()], format='%Y-%m-%d')
+    time = TimeField('Event Time', format='%H:%M', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired(), Length(max=100)])
     availability = IntegerField("Spaces Available", validators=[DataRequired(), NumberRange(min=1)])
     catagory = SelectField('Catagory', choices=[
@@ -49,6 +49,6 @@ class TicketForm(FlaskForm):
     submit = SubmitField("Attend")
 
 class CommentForm(FlaskForm):
-    comment = StringField('Comment', validators=[DataRequired()])
+    comment =  StringField('Comment', validators=[DataRequired()])
     submit_comment = SubmitField('Post')
 

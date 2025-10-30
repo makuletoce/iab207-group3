@@ -74,13 +74,13 @@ def eventManagment(event_id):
         if form.validate_on_submit():
             
             # --- Duplicate title check ---
-            existing_event = Event.query.filter_by(title=form.event_name.data).first()
+            existing_event = Event.query.filter_by(title=form.title.data).first()
             if existing_event:
                 flash("An event with this title already exists. Please choose another title.", "danger")
                 return render_template('event_managment.html', form=form, today=today)
             
              # --- If no duplicate, proceed ---
-            event_date = form.event_date.data  # datetime.date
+            event_date = form.date.data  # datetime.date
 
             if form.image.data:
                 filename = secure_filename(form.image.data.filename)
@@ -89,13 +89,13 @@ def eventManagment(event_id):
             else:
                 filename = 'casual-image.jpg'
 
-            new_event = Event(title = form.event_name.data,
+            new_event = Event(title = form.title.data,
                             description = form.description.data,
-                            date = form.event_date.data,
-                            time = form.event_time.data,
+                            date = event_date,
+                            time = form.time.data,
                             location = form.location.data,
                             catagory = form.catagory.data,
-                            availability = form.num_of_tickets.data,
+                            availability = form.availability.data,
                             host = current_user.id,
                             image = filename
                             )
@@ -103,7 +103,7 @@ def eventManagment(event_id):
             db.session.add(new_event)
             db.session.commit()
 
-        return redirect(url_for("main.landing"))
+            return redirect(url_for("main.landing"))
         
     # if user is editing an event
     else:
