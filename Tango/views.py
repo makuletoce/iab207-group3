@@ -121,6 +121,13 @@ def eventManagment(event_id):
            
            #add edited data to database
            else:
+            if form.image.data:
+                filename = secure_filename(form.image.data.filename)
+                img_path = os.path.join(current_app.root_path, 'static', 'img', filename)
+                form.image.data.save(img_path)
+            else:
+                filename = 'casual-image.jpg'
+
             event.title = form.title.data
             event.description = form.description.data
             event.date  = form.date.data
@@ -129,6 +136,7 @@ def eventManagment(event_id):
             event.catagory = form.catagory.data
             event.availability = form.availability.data
             event.host = current_user.id
+            event.image = filename
 
             db.session.commit()
             flash('Event Updated')
