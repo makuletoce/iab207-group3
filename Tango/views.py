@@ -62,7 +62,7 @@ def eventManagment():
         db.session.add(new_event)
         db.session.commit()
 
-            return redirect(url_for("main.landing"))
+        return redirect(url_for("main.landing"))
         
     # if user is editing an event
     else:
